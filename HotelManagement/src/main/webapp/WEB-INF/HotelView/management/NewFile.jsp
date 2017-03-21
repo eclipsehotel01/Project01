@@ -6,23 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
-<link rel="stylesheet" type="text/css" href="../css/admin_style.css">
+<link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
+
 </head>
 <body>
-	<%@include file="../css/admin_header.jsp" %>
-	<%@include file="../css/admin_nav.jsp" %>
-	<%@include file="../css/admin_aside.jsp" %>
+	<%-- <%@include file="admin_header.jsp" %>
+	<%@include file="admin_nav.jsp" %>
+	<%@include file="admin_aside.jsp" %> --%>
 	<!-- S : MAIN SECTION -->
 	<section>
 		<div id="main_title">	
-			<img src="../img/btn01.png"> 타이틀입니다.
+			<img src="resources/img/btn01.png"> 타이틀입니다.
 		</div>
 		<div id="main_content">
 			내용입니다.
 		</div>
 	</section>
 	<!-- E : MAIN SECTION -->
-	<%@include file="../css/admin_footer.jsp" %>
+	<%-- <%@include file="admin_footer.jsp" %> --%>
 </body>
 </body>
 </html>
