@@ -10,9 +10,9 @@
 
 </head>
 <body>
-	<%-- <%@include file="admin_header.jsp" %>
-	<%@include file="admin_nav.jsp" %>
-	<%@include file="admin_aside.jsp" %> --%>
+	<%@include file="../template/admin_header.jsp" %>
+	<%@include file="../template/admin_nav.jsp" %>
+	<%@include file="../template/admin_aside.jsp" %>
 	<!-- S : MAIN SECTION -->
 	<section>
 		<div id="main_title">	
@@ -23,7 +23,7 @@
 		</div>
 	</section>
 	<!-- E : MAIN SECTION -->
-	<%-- <%@include file="admin_footer.jsp" %> --%>
+	<%@include file="../template/admin_footer.jsp" %>
 </body>
 </body>
 </html>
