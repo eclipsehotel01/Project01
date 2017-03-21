@@ -10,6 +10,7 @@ public class room_reserveVO {
 	String reservedate;
 	String extracode;
 	
+	
 	 
 	public int getReservecode() {
 		return reservecode;
