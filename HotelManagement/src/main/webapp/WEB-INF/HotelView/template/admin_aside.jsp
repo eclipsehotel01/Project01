@@ -7,8 +7,8 @@
 			<li class="aside-title">회원관리</li>				
 				<div id="aside-member" class="aside-content">
 					<ul>
-						<a href=""><li>전체회원관리</li></a>
-						<a href=""><li>탈퇴신청회원</li></a>
+						<a href="admin_membership_list"><li>전체회원관리</li></a>
+						<a href="admin_membership_delete"><li>탈퇴신청회원</li></a>
 					</ul>
 				</div>
 			<hr>
