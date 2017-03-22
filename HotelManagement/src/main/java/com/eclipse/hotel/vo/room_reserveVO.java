@@ -12,6 +12,7 @@ public class room_reserveVO {
 	String extracode;
 	int extracharge;
 	int p_price;
+	String rtype;
 	
 	public int getReservecode() {
 		return reservecode;
@@ -78,5 +79,13 @@ public class room_reserveVO {
 	}
 	public void setP_price(int p_price) {
 		this.p_price = p_price;
-	}	
+	}
+	public String getRtype() {
+		return rtype;
+	}
+	public void setRtype(String rtype) {
+		this.rtype = rtype;
+	}
+	
+
 }

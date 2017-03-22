@@ -45,4 +45,19 @@ ORDER BY reservecode
 </select>
 
 
+<select id="roomlist" parameterType="String" resultType="r_infoVO">
+select *
+from room_price p, room_info i
+where p.price = i.price
+and i.rname like '%'||#{rname}||'%'
+</select>
+
+<select id="roomdetail" parameterType="int" resultType="r_infoVO">
+select * 
+from room_info i , room_price p
+where rnum = #{rnum}
+and i.price = p.price
+</select>	
+
+
 </mapper>

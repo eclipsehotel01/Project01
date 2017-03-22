@@ -3,7 +3,6 @@ package com.eclipse.hotel.vo;
 public class room_priceVO {
 	String price;
 	int season;
-	int hseason;
 	int nonseason;
 	
 	public String getPrice() {
@@ -18,12 +17,7 @@ public class room_priceVO {
 	public void setSeason(int season) {
 		this.season = season;
 	}
-	public int getHseason() {
-		return hseason;
-	}
-	public void setHseason(int hseason) {
-		this.hseason = hseason;
-	}
+
 	public int getNonseason() {
 		return nonseason;
 	}

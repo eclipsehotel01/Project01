@@ -1,5 +1,6 @@
 package com.eclipse.hotel.dao;
 
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,10 +8,22 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+
 import org.springframework.stereotype.Repository;
+
 
 import com.eclipse.hotel.vo.memberVO;
 import com.eclipse.hotel.vo.room_reserveVO;
+
+import com.eclipse.hotel.vo.room_infoVO;
+
 
 @Repository("management_dao")
 public class Management_DAO {
@@ -20,7 +33,7 @@ public class Management_DAO {
 	
 	//mapper경로 
 	private String namespace = "com.eclipse.hotel.mapper.ManagementMapper";
-
+	
 	//전체회원 보기
 	public List<memberVO> membershipList(){
 		return session.selectList(namespace + ".membershipList");
@@ -49,7 +62,20 @@ public class Management_DAO {
 	//회원 상세보기 - 예약 정보(숙박 예정)
 	public List<room_reserveVO> membershipPreReserve(int m_num){
 		return session.selectList(namespace + ".membershipPreReserve", m_num);
+	}	
+
+	public List<room_infoVO> roomList(String rname) {
+		// TODO Auto-generated method stub
+		return session.selectList("roomlist", rname);
 	}
+
+	public room_infoVO roomDetail(int rnum) {
+		// TODO Auto-generated method stub
+		return session.selectOne("roomdetail", rnum);
+	}
+
+
+	
 	
 	
 }

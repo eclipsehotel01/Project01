@@ -1,5 +1,6 @@
 package com.eclipse.hotel.service;
 
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,8 +8,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.eclipse.hotel.dao.Management_DAO;
+
 import com.eclipse.hotel.vo.memberVO;
 import com.eclipse.hotel.vo.room_reserveVO;
+
+import com.eclipse.hotel.vo.room_infoVO;
+
 
 @Service("management_service")
 public class Management_Service {
@@ -44,5 +49,18 @@ public class Management_Service {
 	//회원 상세보기 - 예약 정보(숙박 예정)
 	public List<room_reserveVO> membershipPreReserve(int m_num){
 		return management_dao.membershipPreReserve(m_num);
+	}	
+
+	
+	public List<room_infoVO> roomList(String rname) {
+		// TODO Auto-generated method stub
+		return management_dao.roomList(rname);
 	}
+
+	public room_infoVO roomDetail(int rnum) {
+		// TODO Auto-generated method stub
+		return management_dao.roomDetail(rnum);
+	} 
+	
+
 }
