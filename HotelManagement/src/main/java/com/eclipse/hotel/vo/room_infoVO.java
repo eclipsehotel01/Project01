@@ -8,6 +8,21 @@ public class room_infoVO {
 	int max_person;
 	String img;
 	String price;
+	int season;
+	int nonseason;
+	
+	public int getSeason() {
+		return season;
+	}
+	public void setSeason(int season) {
+		this.season = season;
+	}
+	public int getNonseason() {
+		return nonseason;
+	}
+	public void setNonseason(int nonseason) {
+		this.nonseason = nonseason;
+	}
 	
 	public int getRnum() {
 		return rnum;

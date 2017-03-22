@@ -9,9 +9,30 @@ public class room_reserveVO {
 	int rnum;
 	String reservedate;
 	String extracode;
-	
+	int extracharge;
+	int p_price;
+	String rtype;
 	
 	 
+	public int getExtracharge() {
+		return extracharge;
+	}
+	public void setExtracharge(int extracharge) {
+		this.extracharge = extracharge;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public String getRtype() {
+		return rtype;
+	}
+	public void setRtype(String rtype) {
+		this.rtype = rtype;
+	}
+	
 	public int getReservecode() {
 		return reservecode;
 	}

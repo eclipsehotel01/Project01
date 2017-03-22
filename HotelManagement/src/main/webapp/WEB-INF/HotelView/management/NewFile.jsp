@@ -25,5 +25,4 @@
 	<!-- E : MAIN SECTION -->
 	<%@include file="../template/admin_footer.jsp" %>
 </body>
-</body>
 </html>
