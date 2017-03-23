@@ -120,7 +120,7 @@ public class Management_Controller {
 	public String price_update(room_priceVO vo){
 		management_service.priceUpdate(vo);
 		return "redirect:room_price";
-	}
+	} 
 	
 	//결제목록
 	@RequestMapping(value = "pay_list")
