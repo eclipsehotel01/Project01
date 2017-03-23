@@ -53,6 +53,7 @@ public class Management_Controller {
 		
 		return "management/membership/membership_detail";
 	}
+	
 
 	//°´½Ç¸ñ·Ï
 	@RequestMapping(value = "room_list")
@@ -63,8 +64,7 @@ public class Management_Controller {
 		
 		model.addAttribute("roomlist", infoList);
 		return "management/reserve/room_management";
-	}
-	
+	}	
 	
 	//°´½ÇÁ¤º¸¼öÁ¤
 	@RequestMapping(value = "room_detail")
