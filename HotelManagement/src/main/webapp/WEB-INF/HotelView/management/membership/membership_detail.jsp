@@ -98,7 +98,8 @@
 						</tr>
 					</c:forEach>					
 				</table>
-				<!-- E : content_table -->				
+				<!-- E : content_table -->
+				<input type="button" value="수정하기" onclick="">				
 			</div>
 			<!-- E : content_list -->
 		</div>

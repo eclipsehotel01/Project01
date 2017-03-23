@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "management/NewFile";
+		return "management/reserve/room_reserve_calendar";
 	}
 	
 	@RequestMapping(value = "room_management")
