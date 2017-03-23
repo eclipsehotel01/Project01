@@ -12,6 +12,7 @@
 
 <script>
 $(document).ready(function(){
+	//유형선택
 	$("#roomType").change(function(){
 		$.get("room_list",
 				{"rname":$("#roomType").val()},
@@ -20,6 +21,7 @@ $(document).ready(function(){
 			});
 	});
 });
+
 </script>
 </head>
 
@@ -45,7 +47,7 @@ $(document).ready(function(){
 			</select>
 			</div>
 			<div align="right">
-			<button id = "roomInsert">객실등록</button>
+			<button id = "roomInsert" onclick = "location.href='room_insertOpen'">객실등록</button>
 			</div>
 				<!-- <td>
 					<select id = "search" name = "search">

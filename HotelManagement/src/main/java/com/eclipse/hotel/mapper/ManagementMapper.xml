@@ -5,6 +5,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.eclipse.hotel.mapper.ManagementMapper">
 
+<!-- 결제sql -->
+<sql id="search">
+<where>
+	p.reservecode = r.reservecode
+	and r.m_num = m.m_num
+	and r.rnum = i.rnum
+	<if test="word!=null and searchType=='name'">and m.name like '%${word}%' </if>
+	<if test="word!=null and searchType=='id'">and m.id like '%${word}%' </if>
+</where>
+</sql>
+
 <!-- 전체회원 보기 -->
 <select id="membershipList" resultType="memberVO">
 SELECT * FROM member
@@ -44,14 +55,16 @@ AND check_in &gt;= sysdate
 ORDER BY reservecode
 </select>
 
-
+<!-- 객실 전체목록 -->
 <select id="roomlist" parameterType="String" resultType="r_infoVO">
 select *
 from room_price p, room_info i
 where p.price = i.price
 and i.rname like '%'||#{rname}||'%'
+order by i.rnum
 </select>
 
+<!-- 객실 상세보기 -->
 <select id="roomdetail" parameterType="int" resultType="r_infoVO">
 select * 
 from room_info i , room_price p
@@ -59,5 +72,58 @@ where rnum = #{rnum}
 and i.price = p.price
 </select>	
 
+<!-- 객실요금표 -->
+<select id="roomprice" resultType="r_priceVO">
+select * 
+from room_price 
+order by price
+</select>
+
+<!-- 객실정보수정 -->
+<update id="roomupdate" parameterType="r_infoVO">
+update room_info 
+set rnum = #{rnum}, rsize = #{rsize}, rname = #{rname}, rtype = #{rtype}, standperson = #{standperson}, max_person = #{max_person}, price = #{price}
+where rnum = #{rnum}
+</update>
+
+<!-- 객실삭제 -->
+<delete id="roomdelete" parameterType="int">
+delete from room_info where rnum = #{rnum} 
+</delete>
+
+<!-- 객실등록 -->
+<insert id="roominsert" parameterType="r_infoVO">
+insert into room_info
+values(#{rnum}, #{rname}, #{rsize}, #{rtype}, #{standperson}, #{max_person}, #{img}, #{price})
+</insert>
+
+<!-- 객실요금수정 -->
+<update id="priceupdate" parameterType="r_priceVO">
+update room_price
+set season = #{season}, nonseason = #{nonseason}
+where price = #{price}
+</update>
+
+<!-- 결제목록 -->
+<select id="paylist" resultType="payVO">
+select p.P_NUM, p.RESERVECODE, p.P_DATE, p.P_PRICE, m.ID, m.NAME, r.CHECK_IN, r.CHECK_OUT, r.RNUM, i.RNAME, i.RTYPE, i.img
+from payment p, member m, room_reserve r, room_info i
+<include refid="search"/>
+order by p_date
+</select>
+
+<!-- 결제건수 -->
+<select id="paycount" resultType="int">
+select count(*)
+from payment p, member m, room_reserve r, room_info i
+<include refid="search"/>
+</select>
+
+<!-- 결제총액 -->
+<select id="paytotal" resultType="int">
+select sum(p.p_price)
+from payment p, member m, room_reserve r, room_info i
+<include refid="search"/>
+</select>
 
 </mapper>

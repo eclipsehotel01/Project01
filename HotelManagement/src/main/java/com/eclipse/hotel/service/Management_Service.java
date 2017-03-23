@@ -1,6 +1,7 @@
 package com.eclipse.hotel.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Service;
 import com.eclipse.hotel.dao.Management_DAO;
 
 import com.eclipse.hotel.vo.memberVO;
+import com.eclipse.hotel.vo.paymentVO;
 import com.eclipse.hotel.vo.room_reserveVO;
 
 import com.eclipse.hotel.vo.room_infoVO;
+import com.eclipse.hotel.vo.room_priceVO;
 
 
 @Service("management_service")
@@ -51,15 +54,60 @@ public class Management_Service {
 		return management_dao.membershipPreReserve(m_num);
 	}	
 
-	
+	//°½½Ç ÀüÃ¼º¸±â
 	public List<room_infoVO> roomList(String rname) {
 		// TODO Auto-generated method stub
 		return management_dao.roomList(rname);
 	}
 
+	//°´½Ç »ó¼¼º¸±â
 	public room_infoVO roomDetail(int rnum) {
 		// TODO Auto-generated method stub
 		return management_dao.roomDetail(rnum);
+	}
+
+	//°´½Ç¿ä±ÝÇ¥
+	public List<room_priceVO> roomPrice() {
+		// TODO Auto-generated method stub
+		return management_dao.roomPrice();
+	}
+
+	//°´½ÇÁ¤º¸¼öÁ¤
+	public void roomUpdate(room_infoVO vo) {
+		// TODO Auto-generated method stub
+		management_dao.roomUpdate(vo);
+	}
+
+	//°´½Ç»èÁ¦
+	public void roomDelete(int rnum) {
+		// TODO Auto-generated method stub
+		management_dao.roomDelete(rnum);
+	}
+
+	//°´½Çµî·Ï
+	public void roomInsert(room_infoVO vo) {
+		// TODO Auto-generated method stub
+		management_dao.roomInsert(vo);
+	}
+
+	public void priceUpdate(room_priceVO vo) {
+		// TODO Auto-generated method stub
+		management_dao.priceUpdate(vo);
+	}
+
+	public List<paymentVO> payList(HashMap<String, Object> hm) {
+		// TODO Auto-generated method stub
+		return management_dao.payList(hm);
+	}
+
+	public int payCount(HashMap<String, Object> hm) {
+		// TODO Auto-generated method stub
+		return management_dao.payCount(hm);
+	}
+
+	public int payTotal(HashMap<String, Object> hm) {
+		// TODO Auto-generated method stub
+		return management_dao.payTotal(hm);
 	} 
 	
 

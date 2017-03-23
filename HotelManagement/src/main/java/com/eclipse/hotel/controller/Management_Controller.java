@@ -1,6 +1,7 @@
 package com.eclipse.hotel.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.eclipse.hotel.service.Management_Service;
 
 import com.eclipse.hotel.vo.memberVO;
+import com.eclipse.hotel.vo.paymentVO;
 import com.eclipse.hotel.vo.room_reserveVO;
 
 import com.eclipse.hotel.vo.room_infoVO;
+import com.eclipse.hotel.vo.room_priceVO;
 
 
 @Controller
@@ -54,31 +57,88 @@ public class Management_Controller {
 		return "management/membership/membership_detail";
 	}
 	
-
 	//객실목록
 	@RequestMapping(value = "room_list")
 	public String room_list(Model model, String rname){
 		if(rname==null) rname ="";
-		System.out.println("rname : " + rname);
 		List<room_infoVO> infoList = management_service.roomList(rname);
 		
 		model.addAttribute("roomlist", infoList);
 		return "management/reserve/room_management";
 	}	
 	
-	//객실정보수정
+	//객실상세보기
 	@RequestMapping(value = "room_detail")
 	public String room_detail(Model model, int rnum){
 		room_infoVO infoDetail = management_service.roomDetail(rnum);
+		List<room_priceVO> pricelist = management_service.roomPrice();
 		
 		model.addAttribute("infoDetail", infoDetail);
+		model.addAttribute("pricelist", pricelist);
 		return "management/reserve/room_detail";
+	}
+	
+	//객실정보수정
+	@RequestMapping(value = "room_update")
+	public String room_update(room_infoVO vo){
+		management_service.roomUpdate(vo);
+		return "redirect:room_list";
+	}
+	
+	//객실삭제
+	@RequestMapping(value = "room_delete")
+	public String room_delete(int rnum){
+		management_service.roomDelete(rnum);
+		return "redirect:room_list";
+	}
+	
+	//객실 등록페이지
+	@RequestMapping(value = "room_insertOpen")
+	public String room_insertOpen(Model model){
+		List<room_priceVO> pricelist = management_service.roomPrice();
+		model.addAttribute("pricelist", pricelist);
+		return "management/reserve/room_insert";
+	}
+	
+	//객실등록
+	@RequestMapping(value = "room_insert")
+	public String room_insert(room_infoVO vo){
+		management_service.roomInsert(vo);
+		return "redirect:room_list";
+	}
+	
+	//객실요금목록
+	@RequestMapping(value = "room_price")
+	private String room_price(Model model){
+		List<room_priceVO> pricelist = management_service.roomPrice();
+		model.addAttribute("pricelist", pricelist);
+		return "management/payment/room_price";
+	}
+	
+	//객실요금수정
+	@RequestMapping(value = "price_update")
+	public String price_update(room_priceVO vo){
+		management_service.priceUpdate(vo);
+		return "redirect:room_price";
 	}
 	
 	//결제목록
 	@RequestMapping(value = "pay_list")
-	public String pay_list(){
+	public String pay_list(Model model, String searchType, String word){
+		if(searchType==null) searchType = "";
+		if(word==null) word = "";
 		
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("searchType", searchType);
+		hm.put("word", word);
+		
+		List<paymentVO> paylist = management_service.payList(hm);
+		int paycount = management_service.payCount(hm);
+		int paytotal = management_service.payTotal(hm);
+		
+		model.addAttribute("paylist", paylist);
+		model.addAttribute("paycount", paycount);
+		model.addAttribute("paytotal", paytotal);
 		return "management/payment/pay_management";
 
 	}

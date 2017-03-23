@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
-<title>결제정보관리</title>
+<title>결제정보관리 :: Eclipse Hotel</title>
 
 </head>
 <body>
@@ -20,19 +20,30 @@
 			<img src="resources/img/btn01.png"> 결제정보관리
 		</div>
 		<div id="main_content">
-		<div id = "search_pay"></div>
+		
+		<div id = "paySearch" align = "center">
+		<form action = "pay_list">
+			<select id = "searchType" name = "searchType">
+				<option value = "name">예약자 이름</option>
+				<option value = "id">예약자 아이디</option>
+			</select>
+			<input type = "text" name = "word">
+			<input type = "submit" value = "검색">
+		</form>
+		</div>
+		<br><br>
 		
 		<div align = "left">
-		총 ${pay_Count}건의 결제정보가 검색되었습니다.
+		총 ${paycount}건의 결제정보가 검색되었습니다.
 		</div>
 		<div align = "right">
-		총금액 : ${pay_total}원
+		총금액 : ${paytotal}원
 		</div>
 		
-		<table>
+		<table width = "100%">
 		<tr>
 			<td><input type = "checkbox" id = "selectAll"></td>
-			<td>예약정보</td>
+			<td colspan = "3">예약정보</td>
 			<td>예약자정보</td>
 			<td>결제금액</td>
 			<td>결제일</td>
@@ -41,17 +52,17 @@
 		<c:forEach items="${paylist }" var="plist">
 		<tr>
 			<td rowspan = "2"><input type = "checkbox" id = "pnum"></td>
-			<td>${plist.p_num}</td>
-			<td rowspan = "2">${plist.id}</td>
-			<td rowspan = "2">${plist.p_price}</td>
+			<td colspan = "3">${plist.p_num}</td>
+			<td rowspan = "2">${plist.name}<br>(id : ${plist.id})</td>
+			<td rowspan = "2">${plist.p_price}원</td>
 			<td rowspan = "2">${plist.p_date}</td>
 		</tr>
 		<tr>
-			<td>예약객실 : ${plist.rnum} / 객실유형 : ${plist.rtype}<br>이용기간 : ${plist.check_in}~${plist.check_out}</td>
+			<td>${plist.img }</td>
+			<td>예약객실 : ${plist.rnum}<br>객실유형 : ${plist.rname}(${plist.rtype})<br>이용기간 : ${plist.check_in}<br>~${plist.check_out}</td>
 		</tr>
 		</c:forEach>
 		</table>
-			
 			
 		</div>
 	</section>

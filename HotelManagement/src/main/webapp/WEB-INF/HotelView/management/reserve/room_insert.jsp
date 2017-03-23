@@ -7,13 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
-<title>객실정보수정 :: Eclipse Hotel</title>
-
+<title>객실등록 :: Eclipse Hotel</title>
 <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
 <script>
 $(document).ready(function(){
 	//빈값확인
-	$("#updateBtn").click(function(){
+	$("#insertBtn").click(function(){
 		if($("#rnum").val()==""){
 			alert("호실을 입력하세요"); 
 			return false;
@@ -32,10 +31,13 @@ $(document).ready(function(){
 		}if($("#max_person").val()==""){	
 			alert("최대 인원을 입력하세요");
 			return false;
+		}if($("#img").val()==""){	
+			alert("이미지를 추가하세요");
+			return false;
 		}if($("#price").val()==""){	
 			alert("요금을 선택하세요");
 			return false;
-		}update.submit();
+		}insert.submit();
 	});
 });
 </script>
@@ -49,21 +51,21 @@ $(document).ready(function(){
 	<!-- S : MAIN SECTION -->
 	<section>
 		<div id="main_title">	
-			<img src="resources/img/btn01.png"> 객실정보수정
+			<img src="resources/img/btn01.png"> 새객실등록
 		</div>
 		<div id="main_content">		
 		
 		<div id = "room_table">
-		<form action = "room_update" id = "update">
+		<form action = "room_insert" id = "insert">
 			<b>객실기본설정</b>
 			<table width = "100%" align = "center">
 				<tr>
 					<td>객실호수</td>
-					<td><input type = "text" name = "rnum" value = "${infoDetail.rnum}">호</td>
+					<td><input type = "text" id = "rnum" name = "rnum">호</td>
 				</tr>
 				<tr>
 					<td>객실면적</td>
-					<td><input type = "text" name = "rsize" value = "${infoDetail.rsize}">m</td>
+					<td><input type = "text" id = "rsize" name = "rsize">m</td>
 				</tr>
 				<tr>
 					<td>객실유형</td>
@@ -87,19 +89,31 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<td>기준인원</td>
-					<td><input type = "text" name = "standperson" value = "${infoDetail.standperson}">명</td>
+					<td><input type = "text" id = "standperson" name = "standperson">명</td>
 				</tr>
 				<tr>
 					<td>최대인원</td>
-					<td><input type = "text" name = "max_person" value = "${infoDetail.max_person}">명</td>
+					<td><input type = "text" id = "max_person" name = "max_person">명</td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type = "text" id = "img" name = "img">(*png형식)</td>
 				</tr>
 				<tr>
 					<td>요금정보</td>
-					<td><input type = "text" name = "price" value = "${infoDetail.price}">타입</td>
+					<td><select id = "price" name = "price">
+						<option value = "">요금유형</option>
+						<option value = "A">A</option>
+						<option value = "B">B</option>
+						<option value = "C">C</option>
+						<option value = "D">D</option>
+						<option value = "E">E</option>
+						<option value = "F">F</option>
+					</select></td>
 				</tr>
 				<tr>
-					<td colspan = "2" align = "center"><input type = "button" id = "updateBtn" value = "수정">
-						<input type = "button"  value = "취소" onclick = "location.href='room_list'"></td>
+					<td colspan = "2" align = "center"><input type="button" id="insertBtn" value="등록">
+						<input type="reset" value="취소" class="btn"> <input type = "button"  value = "목록보기" onclick = "location.href='room_list'"></td>
 				</tr>
 			</table>
 		</form>
@@ -108,7 +122,6 @@ $(document).ready(function(){
 		<br><br>
 		
 		<b>요금표</b>
-		<div align = "right"><input type = "button" value = "요금수정" onclick = "location.href='room_price'"></div>
 		<table width = "100%" align = "center">
 		<tr align = "center">
 			<td rowspan = "2">타입</td>

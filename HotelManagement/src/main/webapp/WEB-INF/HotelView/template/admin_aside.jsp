@@ -36,7 +36,7 @@
 				<div id="aside-pay" class="aside-content">
 					<ul>
 						<a href="pay_management"><li>결제내역관리</li></a>
-						<a href=""><li>무통장입금관리</li></a>					
+						<a href="room_price"><li>객실요금관리</li></a>							
 					</ul>
 				</div>
 		</ul>
