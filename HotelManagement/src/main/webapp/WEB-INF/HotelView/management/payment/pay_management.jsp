@@ -9,6 +9,55 @@
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
 <title>결제정보관리 :: Eclipse Hotel</title>
 
+<script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script>
+//paging
+function getListData(pageNum, field, word) {
+   $("body").load("pay_list", {
+      "pageNum" : pageNum,
+      "field" : field,
+      "word" : word
+   }, function(responseText) {
+      $("body").html(responseText);
+   });
+}
+
+//취소할 값이 있는지 확인
+$(document).ready(function(){
+	$("#paydelete").click(function(){
+		if($('input:checkbox[id="cb"]:checked').length!=0){
+			selectDel();
+		}else alert("삭제 할 항목을 선택하세요");
+	});
+});
+
+//선택삭제
+function selectDel(){
+	for(i = 0; i<5; i++){
+		if($('input:checkbox[id="cb"]').is(":checked") == true){
+			$.get("pay_cancel",
+					{"p_num" : $("#p_num").val()}				
+			);
+		}
+	}
+}
+
+//선택취소
+function unchecked(){
+	$('input:checkbox[id="selectAll"]').attr("checked", false);
+	$('input:checkbox[id="cb"]').attr("checked", false);
+}
+
+//전체선택/취소
+$(function(){
+    $("#selectAll").click(function(){
+        var chk = $(this).is(":checked");//.attr('checked');
+        if(chk) $('input:checkbox[id="cb"]').attr("checked", true);
+        else  $('input:checkbox[id="cb"]').attr("checked", false);
+    });
+});
+
+</script>
 </head>
 <body>
 	<%@include file="../../template/admin_header.jsp" %>
@@ -23,7 +72,7 @@
 		
 		<div id = "paySearch" align = "center">
 		<form action = "pay_list">
-			<select id = "searchType" name = "searchType">
+			<select id = "field" name = "field">
 				<option value = "name">예약자 이름</option>
 				<option value = "id">예약자 아이디</option>
 			</select>
@@ -47,23 +96,31 @@
 			<td>예약자정보</td>
 			<td>결제금액</td>
 			<td>결제일</td>
+			<td>결제취소일</td>
 		</tr>
 		
-		<c:forEach items="${paylist }" var="plist">
+		<c:forEach items="${paylist }" var="plist" varStatus="pay">
 		<tr>
-			<td rowspan = "2"><input type = "checkbox" id = "pnum"></td>
-			<td colspan = "3">${plist.p_num}</td>
+			<td rowspan = "2"><input type = "checkbox" id = "cb" name = "cb"></td>
+			<td colspan = "3"><input type = "hidden" id = "pnum${pay.index}" value = "${plist.p_num}">${plist.p_num}</td>
 			<td rowspan = "2">${plist.name}<br>(id : ${plist.id})</td>
 			<td rowspan = "2">${plist.p_price}원</td>
 			<td rowspan = "2">${plist.p_date}</td>
+			<td rowspan = "2">${plist.p_cancel}</td>
 		</tr>
 		<tr>
 			<td>${plist.img }</td>
 			<td>예약객실 : ${plist.rnum}<br>객실유형 : ${plist.rname}(${plist.rtype})<br>이용기간 : ${plist.check_in}<br>~${plist.check_out}</td>
 		</tr>
 		</c:forEach>
+		
+		<tr>
+			<td><input type = "button" id = "paydelete" value = "결제취소">
+				<input type = "button" onclick = "unchecked()" value = "선택취소"></td>
+		</tr>
 		</table>
 			
+		<div align = "center">${pageHtml}</div>
 		</div>
 	</section>
 	<!-- E : MAIN SECTION -->

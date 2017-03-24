@@ -6,13 +6,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eclipse.hotel.service.Management_Service;
-
+import com.eclipse.hotel.util.PageAction;
+import com.eclipse.hotel.util.PageAction_Room;
 import com.eclipse.hotel.vo.memberVO;
 import com.eclipse.hotel.vo.paymentVO;
 import com.eclipse.hotel.vo.room_reserveVO;
@@ -24,7 +26,13 @@ import com.eclipse.hotel.vo.room_priceVO;
 @Controller
 
 public class Management_Controller {
-
+	
+	@Autowired
+	private PageAction page;
+	
+	@Autowired
+	private PageAction_Room page_r;
+	
 	@Resource(name = "management_service")
 	private Management_Service management_service;
 	
@@ -59,11 +67,28 @@ public class Management_Controller {
 	
 	//객실목록
 	@RequestMapping(value = "room_list")
-	public String room_list(Model model, String rname){
+	public String room_list(Model model, String pageNum, String rname){		
 		if(rname==null) rname ="";
-		List<room_infoVO> infoList = management_service.roomList(rname);
+		int count = management_service.getRoomCount(rname);
 		
+		int pageSize = 4;
+			if(pageNum==null) pageNum="1";
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage-1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+			if(endRow > count) endRow = count;
+			
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		hm.put("rname", rname);
+		
+		List<room_infoVO> infoList = management_service.roomList(hm);
+		String pageHtml = page_r.paging(count, pageSize, currentPage, rname);
+		
+		model.addAttribute("count", count);
 		model.addAttribute("roomlist", infoList);
+		model.addAttribute("pageHtml", pageHtml);
 		return "management/reserve/room_management";
 	}	
 	
@@ -124,22 +149,45 @@ public class Management_Controller {
 	
 	//결제목록
 	@RequestMapping(value = "pay_list")
-	public String pay_list(Model model, String searchType, String word){
-		if(searchType==null) searchType = "";
+	public String pay_list(Model model, String pageNum, String field, String word){
+		if(field==null) field = "";
 		if(word==null) word = "";
 		
+		HashMap<String, Object> hm11 = new HashMap<String, Object>();
+		hm11.put("searchType", field);
+		hm11.put("word", word);
+		
+		int paycount = management_service.payCount(hm11);
+		int paytotal = management_service.payTotal(hm11);
+		
+		int pageSize = 4;
+		if(pageNum==null) pageNum="1";
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage-1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		if(endRow > paycount) endRow = paycount;
+		
 		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put("searchType", searchType);
-		hm.put("word", word);
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		hm11.put("searchType", field);
+		hm11.put("word", word);
 		
 		List<paymentVO> paylist = management_service.payList(hm);
-		int paycount = management_service.payCount(hm);
-		int paytotal = management_service.payTotal(hm);
+		String pageHtml = page.paging(paycount, pageSize, currentPage, field, word);
+
 		
-		model.addAttribute("paylist", paylist);
 		model.addAttribute("paycount", paycount);
 		model.addAttribute("paytotal", paytotal);
+		model.addAttribute("paylist", paylist);
+		model.addAttribute("pageHtml", pageHtml);
 		return "management/payment/pay_management";
-
+	}
+	
+	//결제취소
+	@RequestMapping(value = "pay_cancel")
+	public String pay_cancel(int p_num){	//삭제아니고 업데이트!
+		
+		return "redirect:pay_list";
 	}
 }

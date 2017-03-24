@@ -5,8 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.eclipse.hotel.mapper.ManagementMapper">
 
+<!-- 객실sql -->
+<!-- <sql id="roomSearch">
+<where>
+	p.price = i.price
+	<if test="rname!=null">and i.rname like '%'||#{rname}||'%' </if>
+</where>
+</sql> -->
+
 <!-- 결제sql -->
-<sql id="search">
+<sql id="paySearch">
 <where>
 	p.reservecode = r.reservecode
 	and r.m_num = m.m_num
@@ -56,12 +64,23 @@ ORDER BY reservecode
 </select>
 
 <!-- 객실 전체목록 -->
-<select id="roomlist" parameterType="String" resultType="r_infoVO">
-select *
+<select id="roomlist" parameterType="map" resultType="r_infoVO">
+select * 
+from (select rownum numrow, aa.* from ( select p.price, p.season, p.nonseason, i.rnum, i.rname, i.rsize, i.rtype, i.standperson, i.max_person, i.img
+      from room_price p, room_info i  
+      WHERE p.price = i.price  
+      and i.rname like '%'||#{rname}||'%'
+      order by i.rnum) aa) 
+where numrow &gt;= #{startRow} 
+and numrow &lt;= #{endRow}
+</select>
+
+<!-- 객실 수 -->
+<select id="roomcount" resultType="int" parameterType="String">
+select count(*) 
 from room_price p, room_info i
 where p.price = i.price
 and i.rname like '%'||#{rname}||'%'
-order by i.rnum
 </select>
 
 <!-- 객실 상세보기 -->
@@ -105,25 +124,28 @@ where price = #{price}
 </update>
 
 <!-- 결제목록 -->
-<select id="paylist" resultType="payVO">
-select p.P_NUM, p.RESERVECODE, p.P_DATE, p.P_PRICE, m.ID, m.NAME, r.CHECK_IN, r.CHECK_OUT, r.RNUM, i.RNAME, i.RTYPE, i.img
-from payment p, member m, room_reserve r, room_info i
-<include refid="search"/>
-order by p_date
+<select id="paylist" parameterType="map" resultType="payVO">
+select * 
+from (select rownum numrow, aa.* from ( select p.P_NUM, p.RESERVECODE, p.P_DATE, decode(p.p_cancel,null,' '), m.ID, m.NAME, r.CHECK_IN, r.CHECK_OUT, r.RNUM, i.RNAME, i.RTYPE, i.img
+      from payment p, member m, room_reserve r, room_info i 
+      <include refid="paySearch"/>
+      order by i.rnum) aa) 
+where numrow &gt;= #{startRow} 
+and numrow &lt;= #{endRow}
 </select>
 
 <!-- 결제건수 -->
 <select id="paycount" resultType="int">
 select count(*)
 from payment p, member m, room_reserve r, room_info i
-<include refid="search"/>
+<include refid="paySearch"/>
 </select>
 
 <!-- 결제총액 -->
 <select id="paytotal" resultType="int">
 select sum(p.p_price)
 from payment p, member m, room_reserve r, room_info i
-<include refid="search"/>
+<include refid="paySearch"/>
 </select>
 
 </mapper>

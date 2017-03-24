@@ -6,6 +6,7 @@ public class paymentVO {
 	int reservecode;
 	String p_date;
 	int p_price;
+	String p_cancel;
 	String id;
 	String name;
 	String check_in;
@@ -14,6 +15,13 @@ public class paymentVO {
 	String rname;
 	String rtype;
 	String img;
+	
+	public String getP_cancel() {
+		return p_cancel;
+	}
+	public void setP_cancel(String p_cancel) {
+		this.p_cancel = p_cancel;
+	}
 	
 	public String getImg() {
 		return img;

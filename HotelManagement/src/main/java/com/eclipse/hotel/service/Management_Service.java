@@ -54,11 +54,17 @@ public class Management_Service {
 		return management_dao.membershipPreReserve(m_num);
 	}	
 
-	//갹실 전체보기
-	public List<room_infoVO> roomList(String rname) {
+	//객실 전체보기
+	public List<room_infoVO> roomList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
-		return management_dao.roomList(rname);
+		return management_dao.roomList(hm);
 	}
+	
+	//객실 수
+	public int getRoomCount(String rname) {
+		// TODO Auto-generated method stub
+		return management_dao.getRoomCount(rname);
+	} 
 
 	//객실 상세보기
 	public room_infoVO roomDetail(int rnum) {
@@ -90,25 +96,28 @@ public class Management_Service {
 		management_dao.roomInsert(vo);
 	}
 
+	//객실요금수정
 	public void priceUpdate(room_priceVO vo) {
 		// TODO Auto-generated method stub
 		management_dao.priceUpdate(vo);
 	}
 
+	//결제목록
 	public List<paymentVO> payList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return management_dao.payList(hm);
 	}
 
+	//결제건수
 	public int payCount(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return management_dao.payCount(hm);
 	}
 
+	//결제총액
 	public int payTotal(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return management_dao.payTotal(hm);
-	} 
-	
+	}	
 
 }

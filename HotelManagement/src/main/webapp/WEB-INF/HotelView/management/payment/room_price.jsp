@@ -83,11 +83,11 @@ function update(price){
 				<td>성수기</td>
 				<td>비수기</td>
 			</tr>
-			<c:forEach items = "${pricelist }" var = "pricelist" varStatus="hi">
+			<c:forEach items = "${pricelist }" var = "pricelist" varStatus="p">
 			<tr align = "center">
 				<td>${pricelist.price }</td>
-				<td><input type = "text" id = "season${hi.index}" value = "${pricelist.season }">원</td>
-				<td><input type = "text" id = "nonseason${hi.index}" value = "${pricelist.nonseason }">원</td>
+				<td><input type = "text" id = "season${p.index}" value = "${pricelist.season }">원</td>
+				<td><input type = "text" id = "nonseason${p.index}" value = "${pricelist.nonseason }">원</td>
 				<td><input type ="button" id = "updateBtn" onclick = "update('${pricelist.price }')" value = "수정"></td>
 			</tr>
 			</c:forEach>

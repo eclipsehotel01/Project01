@@ -67,9 +67,16 @@ public class Management_DAO {
 	}	
 
 	//객실 전체보기
-	public List<room_infoVO> roomList(String rname) {
+	public List<room_infoVO> roomList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
-		return session.selectList("roomlist", rname);
+		
+		return session.selectList("roomlist", hm);
+	}
+	
+	//객실수
+	public int getRoomCount(String rname) {
+		// TODO Auto-generated method stub
+		return session.selectOne("roomcount", rname);
 	}
 
 	//객실 상세보기
@@ -102,28 +109,29 @@ public class Management_DAO {
 		session.insert("roominsert", vo);
 	}
 
+	//객실요금수정
 	public void priceUpdate(room_priceVO vo) {
 		// TODO Auto-generated method stub
 		session.update("priceupdate", vo);
 	}
 
+	//결제목록
 	public List<paymentVO> payList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return session.selectList("paylist", hm);
 	}
 
+	//결제건수
 	public int payCount(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return session.selectOne("paycount", hm);
 	}
 
+	//결제총액
 	public int payTotal(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return session.selectOne("paytotal", hm);
-	}
-
-
-	
+	}	
 	
 	
 }
