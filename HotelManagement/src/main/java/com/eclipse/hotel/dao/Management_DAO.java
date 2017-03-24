@@ -34,36 +34,6 @@ public class Management_DAO {
 	//mapper경로 
 	private String namespace = "com.eclipse.hotel.mapper.ManagementMapper";
 	
-	//전체회원 보기
-	public List<memberVO> membershipList(){
-		return session.selectList(namespace + ".membershipList");
-	}
-	
-	//전체회원 수
-	public int membershipCount(){
-		return session.selectOne(namespace + ".membershipCount");
-	}
-	
-	//오늘 가입 회원 수
-	public int todayMembershipCount(){
-		return session.selectOne(namespace + ".todayCount");
-	}
-	
-	//회원 상세보기
-	public memberVO membershipDetail(int m_num){
-		return session.selectOne(namespace + ".membershipDetail", m_num);
-	}
-	
-	//회원 상세보기 - 예약 정보(숙박 완료)
-	public List<room_reserveVO>membershipReserve(int m_num){
-		return session.selectList(namespace + ".membershipReserve", m_num);
-	}
-	
-	//회원 상세보기 - 예약 정보(숙박 예정)
-	public List<room_reserveVO> membershipPreReserve(int m_num){
-		return session.selectList(namespace + ".membershipPreReserve", m_num);
-	}	
-
 	public List<room_infoVO> roomList(String rname) {
 		// TODO Auto-generated method stub
 		return session.selectList("roomlist", rname);

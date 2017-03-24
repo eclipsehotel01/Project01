@@ -18,7 +18,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <!-- mapper -->
 <mappers>
-   <mapper resource="com/eclipse/hotel/mapper/ManagementMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/admin/mapper/MembershipMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/admin/mapper/ReserveMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/mapper/ManagementMapper.xml"/>
 </mappers>
 
 </configuration>

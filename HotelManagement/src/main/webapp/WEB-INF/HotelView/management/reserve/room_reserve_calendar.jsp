@@ -14,10 +14,37 @@
 <script type="text/javascript" src="resources/fullcalendar/lib/moment.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/lib/jquery.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/fullcalendar.js"></script>
+<!-- 
 <script type="text/javascript" src="resources/js/calendar.js"></script>
+ --> 
+ 
+ <script>
+ $(document).ready(function(){ 		 
+	 $('#main_content').fullCalendar({	
+		 header : {
+			    left:   'today prev,next',
+			    center: 'title',
+			    right:  'month, listWeek'
+			}			 
+		 ,eventSources: [		        
+		        {
+		            url: 'admin_reserve_list',
+		            type: 'GET',		           
+		            error: function() {
+		                alert('there was an error while fetching events!');
+		            },
+		            color: 'pink',  
+		            textColor: 'black' 
+		        }
+		    ]
+		}); //fullcalendar	
+ }); //ready 
+
+ </script>
 
 </head>
 <body>
+
 	<%@include file="../../template/admin_header.jsp" %>
 	<%@include file="../../template/admin_nav.jsp" %>
 	<%@include file="../../template/admin_aside.jsp" %>
@@ -31,6 +58,8 @@
 		
 			<!-- S : content_calendar -->
 			<div id="content_calendar">			
+			</div>
+			<div id="content_calendar1">			
 			</div>
 			<!-- E : content_calendar -->
 				

@@ -8,6 +8,9 @@
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
 
+<!-- JS -->
+<script type="text/javascript" src="resources/js/management_membership.js"></script>
+
 </head>
 <body>
 	<%@include file="../../template/admin_header.jsp" %>
