@@ -7,13 +7,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <!-- 별칭 -->
 <typeAliases>
-	
+	<typeAlias alias="boardVO" type="com.eclipse.hotel.vo.boardVO"/>
 </typeAliases>
-
 
 <!-- mapper -->
 <mappers>
-	
+	<mapper resource="com/eclipse/hotel/mapper/Myboard.xml"/>
 </mappers>
 
 </configuration>

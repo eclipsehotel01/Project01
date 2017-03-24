@@ -28,7 +28,7 @@
       <property name="configLocation" value="classpath:com/eclipse/hotel/config/Configuration.xml"/>
     </bean>
     
-    <bean id="sqlMapper" class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
       <constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg>
     </bean>
 		

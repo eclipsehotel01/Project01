@@ -36,4 +36,13 @@ public class HomeController {
 		return "management/NewFile";
 	}
 	
+	@RequestMapping("Managementboardregister")
+	public String Managementboardregisterboard(String category,Model model){
+		model.addAttribute("category",category);
+		return "management/board/Managementboardregister";
+	} 
+	@RequestMapping("loginform")
+	public String login(){
+		return "management/board/login";
+	}
 }

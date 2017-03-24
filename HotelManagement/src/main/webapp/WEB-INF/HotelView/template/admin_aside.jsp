@@ -15,12 +15,12 @@
 			<li class="aside-title">게시물관리</li>
 				<div id="aside-board" class="aside-content">
 					<ul>
-						<a href=""><li>공지사항</li></a>
-						<a href=""><li>QnA</li></a>
-						<a href=""><li>환불신청게시판</li></a>
-						<a href=""><li>자유게시판</li></a>
-						<a href=""><li>후기게시판</li></a>
-					</ul>
+						<a href="managementboardlist?category=공지사항"><li>공지사항</li></a>
+						<a href="managementboardlist?category=QnA"><li>QnA</li></a>
+						<a href="managementboardlist?category=환불신청게시판"><li>환불신청게시판</li></a>
+						<a href="managementboardlist?category=자유게시판"><li>자유게시판</li></a> 
+						<a href="managementboardlist?category=후기게시판"><li>후기게시판</li></a>
+					</ul> 
 				</div>
 			<hr>
 			<li class="aside-title">객실예약관리</li>
