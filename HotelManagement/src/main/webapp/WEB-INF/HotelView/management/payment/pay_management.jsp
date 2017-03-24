@@ -22,7 +22,7 @@ function getListData(pageNum, field, word) {
    });
 }
 
-//취소할 값이 있는지 확인
+/* //취소할 값이 있는지 확인
 $(document).ready(function(){
 	$("#paydelete").click(function(){
 		if($('input:checkbox[id="cb"]:checked').length!=0){
@@ -35,11 +35,38 @@ $(document).ready(function(){
 function selectDel(){
 	for(i = 0; i<5; i++){
 		if($('input:checkbox[id="cb"]').is(":checked") == true){
-			$.get("pay_cancel",
-					{"p_num" : $("#p_num").val()}				
-			);
+			
 		}
 	}
+} */
+
+function payCancel(){
+	var cb = "";
+	$("input[name='cb']:checked").each (function (){
+		cb = cb + $(this).val()+"," ;
+	});
+	
+	//맨끝 콤마 지우기
+	cb = cb.substring(0,cb.lastIndexOf(",")); 
+
+	//체크박스 선택 확인
+	if(cb == ''){	
+		alert("결제 취소 할 대상을 선택하세요.");
+		return false;
+	}
+	
+	//결제취소
+	$.get("pay_cancel",
+			{"p_num" : cb},
+			function(data){
+				if(data=='fail'){
+					alert("이미 취소된 결제입니다.");
+				}else {
+					alert("결제번호 : " + cb + "가 취소되었습니다.");
+				}
+			}
+	);
+	
 }
 
 //선택취소
@@ -48,9 +75,9 @@ function unchecked(){
 	$('input:checkbox[id="cb"]').attr("checked", false);
 }
 
-//전체선택/취소
-$(function(){
-    $("#selectAll").click(function(){
+//전체선택
+$(document).ready(function(){
+	$("#selectAll").click(function(){
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) $('input:checkbox[id="cb"]').attr("checked", true);
         else  $('input:checkbox[id="cb"]').attr("checked", false);
@@ -101,8 +128,8 @@ $(function(){
 		
 		<c:forEach items="${paylist }" var="plist" varStatus="pay">
 		<tr>
-			<td rowspan = "2"><input type = "checkbox" id = "cb" name = "cb"></td>
-			<td colspan = "3"><input type = "hidden" id = "pnum${pay.index}" value = "${plist.p_num}">${plist.p_num}</td>
+			<td rowspan = "2"><input type = "checkbox" id = "cb" name = "cb" value = "${plist.p_num}"></td>
+			<td colspan = "3">${plist.p_num}</td>
 			<td rowspan = "2">${plist.name}<br>(id : ${plist.id})</td>
 			<td rowspan = "2">${plist.p_price}원</td>
 			<td rowspan = "2">${plist.p_date}</td>
@@ -115,8 +142,7 @@ $(function(){
 		</c:forEach>
 		
 		<tr>
-			<td><input type = "button" id = "paydelete" value = "결제취소">
-				<input type = "button" onclick = "unchecked()" value = "선택취소"></td>
+			<td><input type = "button" onclick = "payCancel()" value = "결제취소"><input type = "button" onclick = "unchecked()" value = "선택취소"></td>
 		</tr>
 		</table>
 			

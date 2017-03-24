@@ -131,6 +131,18 @@ public class Management_DAO {
 	public int payTotal(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return session.selectOne("paytotal", hm);
+	}
+
+	//결제취소
+	public void payCancel(int p_num) {
+		// TODO Auto-generated method stub
+		session.update("paycancel", p_num);
+	}
+
+	//결제 취소여부 확인
+	public int cancelCheck(int pnum) {
+		// TODO Auto-generated method stub
+		return session.selectOne("cancelcheck", pnum);
 	}	
 	
 	

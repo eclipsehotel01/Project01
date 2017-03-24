@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eclipse.hotel.service.Management_Service;
 import com.eclipse.hotel.util.PageAction;
@@ -186,8 +187,19 @@ public class Management_Controller {
 	
 	//결제취소
 	@RequestMapping(value = "pay_cancel")
-	public String pay_cancel(int p_num){	//삭제아니고 업데이트!
-		
-		return "redirect:pay_list";
+	@ResponseBody
+	public String pay_cancel(String p_num){	//삭제아니고 업데이트!
+		String msg = "fail";
+		String[] arr =  p_num.split(",");
+		for(int i=0; i<arr.length;i++){
+			if(Integer.toString(management_service.cancelCheck(Integer.parseInt(arr[i])))==null){
+				break;
+			}else{
+				management_service.payCancel(Integer.parseInt(arr[i]));
+				msg = "success";
+			}
+			System.out.println("msg : " + msg);
+		}
+		return msg;
 	}
 }

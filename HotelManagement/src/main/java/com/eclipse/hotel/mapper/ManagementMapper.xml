@@ -126,7 +126,7 @@ where price = #{price}
 <!-- 결제목록 -->
 <select id="paylist" parameterType="map" resultType="payVO">
 select * 
-from (select rownum numrow, aa.* from ( select p.P_NUM, p.RESERVECODE, p.P_DATE, decode(p.p_cancel,null,' '), m.ID, m.NAME, r.CHECK_IN, r.CHECK_OUT, r.RNUM, i.RNAME, i.RTYPE, i.img
+from (select rownum numrow, aa.* from ( select p.P_NUM, p.RESERVECODE, p.P_DATE, p.p_price, decode(p.p_cancel,null,' ',p.p_cancel)as p_cancel , m.ID, m.NAME, r.CHECK_IN, r.CHECK_OUT, r.RNUM, i.RNAME, i.RTYPE, i.img
       from payment p, member m, room_reserve r, room_info i 
       <include refid="paySearch"/>
       order by i.rnum) aa) 
@@ -146,6 +146,20 @@ from payment p, member m, room_reserve r, room_info i
 select sum(p.p_price)
 from payment p, member m, room_reserve r, room_info i
 <include refid="paySearch"/>
+</select>
+
+<!-- 결제취소 -->
+<update id="paycancel" parameterType="payVO">
+update payment
+set p_date = '', p_cancel = sysdate
+where p_num = #{p_num}
+</update>
+
+<!-- 결제취소확인 -->
+<select id="cancelcheck" parameterType="int">
+select p_num from payment
+where p_num = #{pnum}
+and p_date is null
 </select>
 
 </mapper>

@@ -118,6 +118,18 @@ public class Management_Service {
 	public int payTotal(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return management_dao.payTotal(hm);
+	}
+
+	//결제취소
+	public void payCancel(int p_num) {
+		// TODO Auto-generated method stub
+		management_dao.payCancel(p_num);
+	}
+
+	//결제 취소여부 확인
+	public int cancelCheck(int pnum) {
+		// TODO Auto-generated method stub
+		return management_dao.cancelCheck(pnum);
 	}	
 
 }
