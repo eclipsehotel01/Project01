@@ -5,11 +5,14 @@ public class memberVO {
 	String id;
 	String password;
 	String name;
+	String gender;
 	String birth;
 	String phone;
 	String email;
+	int zipcode;
 	String address;
 	String register;
+	
 	public int getM_num() {
 		return m_num;
 	}
@@ -34,6 +37,12 @@ public class memberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public String getBirth() {
 		return birth;
 	}
@@ -52,6 +61,12 @@ public class memberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public int getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(int zipcode) {
+		this.zipcode = zipcode;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -63,7 +78,6 @@ public class memberVO {
 	}
 	public void setRegister(String register) {
 		this.register = register;
-	}
-	
+	}	
 	
 }

@@ -2,8 +2,11 @@ package com.eclipse.hotel.service;
 
 import java.util.HashMap;
 import java.util.List;
-
 import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.eclipse.hotel.dao.Board_DAO;
 
 import org.springframework.stereotype.Service;
 
@@ -34,8 +37,8 @@ public class Board_Service {
 	public void managementboardupdate(boardVO vo){
 		board_dao.managementboardupdate(namespace +".managementboardupdate", vo);
 	}
-	public  void managementboarddelete(int b_num){
-		board_dao.managementboarddelete(namespace +".managementboarddelete",b_num);
+	public  void managementboarddelete(HashMap<String, Object>del){
+		board_dao.managementboarddelete(namespace +".managementboarddelete",del);
 	}
 	public String boardCheck(int b_num){
 		return board_dao.boardCheck(namespace + ".CheckData",b_num);

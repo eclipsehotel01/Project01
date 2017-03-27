@@ -2,11 +2,10 @@ package com.eclipse.hotel.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
-import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.eclipse.hotel.vo.boardVO;
 

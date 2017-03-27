@@ -4,8 +4,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
+import com.eclipse.hotel.service.Board_Service;
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +64,6 @@ public class Board_Controller {
 				
 				hm.put("startRow", startRow); 
 				hm.put("endRow", endRow);
-				System.out.println(hm);
-				System.out.println();
 				List managementboardlist=board_service.getSearchList(hm);
 				String pageHtml=pageaction.paging(count, pageSize, currentPage,field,word,category);	
 				model.addAttribute("category",category); 
@@ -87,8 +90,14 @@ public class Board_Controller {
 	}
 	
 	@RequestMapping(value="managementboarddelete")
-	public String managementboarddelete(int b_num,String category) throws UnsupportedEncodingException{
-		board_service.managementboarddelete(b_num);
+	public String managementboarddelete(int b_num,String category,int levels,int steps,int groups) throws UnsupportedEncodingException{
+		HashMap<String, Object> del=new HashMap<String, Object>();
+		del.put("groups", groups); 
+		del.put("levels", levels);
+		del.put("steps", steps);
+		del.put("b_num", b_num);
+
+		board_service.managementboarddelete(del);
 		System.out.println(category);  
 		String category1 = URLEncoder.encode(category, "utf-8");
 		return "redirect:managementboardlist?category="+category1; 

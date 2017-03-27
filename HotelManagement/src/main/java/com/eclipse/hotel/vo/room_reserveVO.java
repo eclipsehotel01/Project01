@@ -7,11 +7,13 @@ public class room_reserveVO {
 	String check_out;
 	int person;
 	int rnum;
+	String rname;
 	String reservedate;
 	String extracode;
+	int extracharge;
+	int p_price;
+	String rtype;
 	
-	
-	 
 	public int getReservecode() {
 		return reservecode;
 	}
@@ -48,6 +50,12 @@ public class room_reserveVO {
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
 	public String getReservedate() {
 		return reservedate;
 	}
@@ -60,7 +68,24 @@ public class room_reserveVO {
 	public void setExtracode(String extracode) {
 		this.extracode = extracode;
 	}
+	public int getExtracharge() {
+		return extracharge;
+	}
+	public void setExtracharge(int extracharge) {
+		this.extracharge = extracharge;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public String getRtype() {
+		return rtype;
+	}
+	public void setRtype(String rtype) {
+		this.rtype = rtype;
+	}
 	
-	
-	
+
 }

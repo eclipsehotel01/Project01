@@ -46,9 +46,14 @@ b.m_num=m.m_num
 	update board set title=#{title},content=#{content} where b_num=#{b_num}
 	</update>
 	
-	<!-- 삭제하기 -->
+	<!-- 삭제하기
 	<delete id="managementboarddelete" parameterType="String">
 	delete from board where b_num=#{b_num}
+	</delete>
+	!-->
+	<!-- 삭제하기 -->
+	<delete id="managementboarddelete" parameterType="String">
+	delete board where groups=#{groups} and (levels>=#{levels} and steps>=#{steps}) and b_num>=#{b_num}
 	</delete>
 	<!-- ses -->
 	<select id="CheckData" parameterType="int" resultType="String">

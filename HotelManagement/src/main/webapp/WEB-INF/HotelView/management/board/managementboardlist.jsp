@@ -15,7 +15,8 @@
 			url : "managementboardlist",
 			data : {
 				"field" : $("#field").val(),
-				"word" : $("#word").val()
+				"word" : $("#word").val(),
+				"category" :$("#category").val()
 			},
 
 			success : function(data) {
@@ -104,6 +105,7 @@
 </table>
 ${pageHtml }
 <form method="get">
+<input type="hidden" id="category" value="${category }">
 <select id="field" name="word">
 <option value="title">제목</option>
 <option value="id">작성자</option>

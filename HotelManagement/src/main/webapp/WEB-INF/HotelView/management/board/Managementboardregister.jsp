@@ -7,18 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
-<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
-<!-- <script type="text/javascript"> var direct_board = true </script>
-<script type="text/javascript" src="/Libs/_js/common.js"></script>
-<script type="text/javascript" src="/Libs/_js/form.js"></script>
-<script type="text/javascript" src="/wysiwyg/wysiwyg.js"></script>
-<script type="text/javascript" src="/rankup_module/rankup_board/rankup_board.js"></script>
-<script type="text/javascript">
 
-rankup_board.board_id = "board1";
-rankup_board.index_url = "/board";
-rankup_board.no = "";
- -->
+<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
 <script>
 $(document).ready(function() {
 	$("#btn").click(function(){

@@ -45,4 +45,13 @@ public class HomeController {
 	public String login(){
 		return "management/board/login";
 	}
+	@RequestMapping(value = "room_management")
+	public String room_management(){
+		return "redirect:room_list";
+	}
+	
+	@RequestMapping(value = "pay_management")
+	public String pay_management(){
+		return "redirect:pay_list";
+	}	
 }

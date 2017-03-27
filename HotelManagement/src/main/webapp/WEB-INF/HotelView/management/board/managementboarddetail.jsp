@@ -12,7 +12,7 @@
 
 function del(){
 	 if(confirm("정말 삭제할까요?")){
-		location.href="managementboarddelete?b_num=${board.b_num}&category=${board.category}"; 
+		location.href="managementboarddelete?b_num=${board.b_num}&category=${board.category}&groups=${board.groups}&levels=${board.levels}&steps=${board.steps}";
 	} 
 
 }
@@ -34,6 +34,7 @@ $(document).ready(function(){
 			}
 		}); 
  	}); */
+ 	
 	$("#update").click(function(){
 		window.open("pwdCheck11?b_num=${board.b_num}&title="+$("#title").val()+"&content="+$("#content").val()+"&category="+$("#category").val(),"","width=350 height=200 scrollbars=yes");
 	});
