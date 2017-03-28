@@ -30,7 +30,10 @@ public String paging(int count,int pageSize,int currentPage,String field,String 
 				if(i==currentPage){
 					sb.append("["+i+"]");
 				}else{
-				sb.append("<a href=javascript:getListData(");
+				/*sb.append("<a href=javascript:");
+				sb.append(url);
+				sb.append("(");*/
+				sb.append("<a href=javascript:getListData(");	
 				sb.append(i);
 				sb.append(",'"+field);
 				sb.append("','"+category);
@@ -40,6 +43,9 @@ public String paging(int count,int pageSize,int currentPage,String field,String 
 	 		} 
 			//´ÙÀ½
 			if(endPage<pageCount){
+				/*sb.append("<a href=javascript:");
+				sb.append(url);
+				sb.append("(");*/
 				sb.append("<a href=javascript:getListData(");
 				sb.append("pageNum="+(startPage+pageBlock));
 				sb.append(",'"+field);

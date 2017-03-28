@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper     
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eclipse.hotel.admin.mapper.MembershipMapper">
+
+<sql id="search">
+	<where>		
+		<if test="field=='m_num' and word!=''">
+		m_num = ${word}
+		</if>
+		<if test="field=='id' and word!=''">
+		id = ${word}
+		</if>
+		<if test="field=='name' and word!=''">
+		name LIKE '%${word}%'
+		</if>
+	</where>
+</sql>
+
+<!-- 회원 리스트 -->
+<select id="membershipList" resultType="memberVO">
+SELECT * FROM  
+(SELECT rownum rnum, aa.*  FROM 
+(SELECT * FROM member<include refid="search"/> ORDER BY register) 
+aa) 
+WHERE rnum &gt;= #{startRow} AND rnum &lt;=#{endRow}
+</select>
+
+<!-- 회원 수 -->
+<select id="membershipCount" resultType="int">
+SELECT COUNT(*) FROM member
+<include refid="search"></include>
+</select>
+
+<!-- 오늘 가입 회원 수 -->
+<select id="todayCount" resultType="int">
+SELECT COUNT(*) FROM member
+WHERE TO_DATE(register) = TO_DATE(sysdate)
+</select>
+
+<!-- 회원 상세보기 -->
+<select id="membershipDetail" parameterType="int" resultType="memberVO">
+SELECT * FROM member
+WHERE m_num = #{m_num}
+</select>
+
+<!-- 회원 상세보기 : 예약정보(숙박종료) -->
+<select id="membershipReserve" parameterType="int" resultType="r_reserv_VO">
+SELECT * FROM room_reserve
+WHERE m_num = #{m_num} 
+AND check_out &lt; sysdate
+ORDER BY reservecode
+</select>
+
+<!-- 회원 상세보기 : 예약정보(숙박예정) -->
+<select id="membershipPreReserve" parameterType="int" resultType="r_reserv_VO">
+SELECT * FROM room_reserve
+WHERE m_num = #{m_num} 
+AND check_in &gt;= sysdate
+ORDER BY reservecode
+</select>
+
+<!-- 회원 수정 -->
+<update id="memberUpdate" parameterType="memberVO">
+UPDATE member
+SET password = #{password}, name = #{name}, gender = #{gender}, birth = #{birth}, 
+	phone = #{phone}, email = #{email}, zipcode = #{zipcode}, address = #{address}
+WHERE m_num = #{m_num}
+</update>
+
+<!-- 회원 삭제 -->
+<delete id="memberDelete">
+DELETE member
+WHERE m_num = #{m_num}
+</delete>
+
+
+
+
+</mapper>

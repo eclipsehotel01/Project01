@@ -5,9 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
 
+<!-- JS -->
+<script type="text/javascript" src="resources/js/management_membership.js"></script>
+
+</head>
 </head>
 <body>
 	<%@include file="../../template/admin_header.jsp" %>
@@ -25,40 +31,41 @@
 			<div id="content_list">				
 				<!-- S : content_table -->
 				ㅣ${member.name }님의 회원정보입니다.
-				<table id="content_table">					
+				<table>					
 					<tr>
-						<th>회원번호</th>
-						<td>${member.m_num }</td>	
-						<th>이름</th>
-						<td>${member.name }</td>
+						<th width="20%">회원번호</th>
+						<td width="30%">${member.m_num }</td>	
+						<th width="20%">아이디</th>
+						<td width="30%">${member.id }</td>	
+						
 					</tr>
 					<tr>
-						<th>아이디</th>
-						<td>${member.id }</td>	
+						<th>이름</th>
+						<td>${member.name }</td>
 						<th>성별</th>
 						<td>${member.gender }</td>
 					</tr>
 					<tr>
-						<th>생일</th>
+						<th>생년월일</th>
 						<td>${member.birth }</td>	
 						<th>전화번호</th>
 						<td>${member.phone }</td>
 					</tr>
 					<tr>
 						<th>E-MAIL</th>
-						<td>${member.email }</td>
+						<td colspan="3">${member.email }</td>
 					</tr>
 					<tr>
 						<th>우편번호</th>
-						<td>${member.zipcode }</td>
+						<td colspan="3">${member.zipcode }</td>
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>${member.address }</td>
+						<td colspan="3">${member.address }</td>
 					</tr>
 					<tr>
 						<th>가입일</th>
-						<td>${member.register }</td>
+						<td colspan="3">${member.register }</td>
 					</tr>
 				</table>
 				<br><br>
@@ -99,6 +106,9 @@
 					</c:forEach>					
 				</table>
 				<!-- E : content_table -->				
+				<input type="button" value="전체목록" onclick="btnAllList()" class="btnStyle">
+				<input type="button" value="수정" onclick="btnUpdatePage(${member.m_num })" class="btnStyle">
+				<input type="button" value="삭제" onclick="btnDelete(${member.m_num })" class="btnStyle">
 			</div>
 			<!-- E : content_list -->
 		</div>

@@ -8,10 +8,10 @@
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
 <title>객실등록/관리 :: Eclipse Hotel</title>
-	<script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
 <script>
 $(document).ready(function(){
+	//유형선택
 	$("#roomType").change(function(){
 		$.get("room_list",
 				{"rname":$("#roomType").val()},
@@ -20,6 +20,16 @@ $(document).ready(function(){
 			});
 	});
 });
+
+//paging
+function getListData(pageNum, rname) {
+    $("body").load("room_list", {
+       "pageNum" : pageNum,
+       "rname" : rname
+    }, function(responseText) {
+       $("body").html(responseText);
+    });
+ }
 </script>
 </head>
 
@@ -45,8 +55,10 @@ $(document).ready(function(){
 			</select>
 			</div>
 			<div align="right">
-			<button id = "roomInsert">객실등록</button>
+			<button id = "roomInsert" onclick = "location.href='room_insertOpen'">객실등록</button><br>
+			총 ${count}개의 객실이 있습니다.
 			</div>
+			
 				<!-- <td>
 					<select id = "search" name = "search">
 						<option>검색항목</option>
@@ -91,7 +103,10 @@ $(document).ready(function(){
 			</c:forEach>
 			</tbody>
 		</table>			
-			
+		
+		<br>
+		<div align = "center">${pageHtml}</div>
+		
 		</div>
 	</section>
 	<!-- E : MAIN SECTION -->
