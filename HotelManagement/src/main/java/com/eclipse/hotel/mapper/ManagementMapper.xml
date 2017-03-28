@@ -155,9 +155,9 @@ set p_date = '', p_cancel = sysdate
 where p_num = #{p_num}
 </update>
 
-<!-- 결제취소확인 -->
-<select id="cancelcheck" parameterType="int">
-select p_num from payment
+<!-- 결제취소여부확인 -->
+<select id="cancelcheck" parameterType="int" resultType="int">
+select count(p_num) from payment
 where p_num = #{pnum}
 and p_date is null
 </select>

@@ -176,12 +176,12 @@ public class Management_Controller {
 		
 		List<paymentVO> paylist = management_service.payList(hm);
 		String pageHtml = page.paging(paycount, pageSize, currentPage, field, word);
-
 		
 		model.addAttribute("paycount", paycount);
 		model.addAttribute("paytotal", paytotal);
 		model.addAttribute("paylist", paylist);
 		model.addAttribute("pageHtml", pageHtml);
+		
 		return "management/payment/pay_management";
 	}
 	
@@ -189,16 +189,22 @@ public class Management_Controller {
 	@RequestMapping(value = "pay_cancel")
 	@ResponseBody
 	public String pay_cancel(String p_num){	//삭제아니고 업데이트!
-		String msg = "fail";
+		String msg = "";
 		String[] arr =  p_num.split(",");
+		
+		//결제 취소 여부 확인
 		for(int i=0; i<arr.length;i++){
-			if(Integer.toString(management_service.cancelCheck(Integer.parseInt(arr[i])))==null){
+			if(management_service.cancelCheck(Integer.parseInt(arr[i]))==1){
+				msg = "fail";
 				break;
-			}else{
-				management_service.payCancel(Integer.parseInt(arr[i]));
-				msg = "success";
+			}else	msg = "success";
+		}
+		
+		//선택된 결제 취소
+		for(int i=0; i<arr.length;i++){
+			if(msg == "success"){
+				 management_service.payCancel(Integer.parseInt(arr[i]));
 			}
-			System.out.println("msg : " + msg);
 		}
 		return msg;
 	}

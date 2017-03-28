@@ -60,9 +60,9 @@ function payCancel(){
 			{"p_num" : cb},
 			function(data){
 				if(data=='fail'){
-					alert("이미 취소된 결제입니다.");
+					alert("이미 취소된 결제를 선택하셨습니다.");
 				}else {
-					alert("결제번호 : " + cb + "가 취소되었습니다.");
+					alert("결제번호 : " + cb + "이(가) 취소되었습니다.");
 				}
 			}
 	);
