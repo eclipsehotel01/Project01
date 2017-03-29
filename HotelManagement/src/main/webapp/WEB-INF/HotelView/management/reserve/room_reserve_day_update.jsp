@@ -34,7 +34,7 @@ $(document).ready(function(){
           }
       );
    }); 
-      
+       
     //예약가능한 호실 목록
      $("#rnum").change(function(){
       $.get("roomInfo",
