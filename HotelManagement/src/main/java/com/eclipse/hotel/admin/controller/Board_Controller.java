@@ -139,7 +139,7 @@ public class Board_Controller {
 	public String commentList(Model model,int b_num){
 		List commentlist=board_service.getList(b_num);
 		model.addAttribute("commentlist",commentlist);
-		return "management/board/commentlist"; 
+		return "common/commentlist"; 
 	}
 	//´ñ±Ûµî·Ï
 	@RequestMapping(value="commentInsert")

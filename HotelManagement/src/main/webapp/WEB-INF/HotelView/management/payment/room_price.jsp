@@ -77,7 +77,7 @@ function update(price){
 			<tr align = "center">
 				<td rowspan = "2">타입</td>
 				<td colspan = "2">객실이용요금</td>
-				<td colspan = "2">관리</td>
+				<td rowspan = "2">관리</td>
 			</tr>
 			<tr align = "center">
 				<td>성수기</td>

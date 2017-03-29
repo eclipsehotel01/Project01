@@ -110,9 +110,9 @@ public class Management_DAO {
 	}
 
 	//결제 취소여부 확인
-	public int cancelCheck(int pnum) {
+	public int cancelCheck(int p_num) {
 		// TODO Auto-generated method stub
-		return session.selectOne("cancelcheck", pnum);
+		return session.selectOne("cancelcheck", p_num);
 	}	
 	
 	

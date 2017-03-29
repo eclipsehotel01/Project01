@@ -16,11 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 결제sql -->
 <sql id="paySearch">
 <where>
-	p.reservecode = r.reservecode
-	and r.m_num = m.m_num
-	and r.rnum = i.rnum
-	<if test="word!=null and searchType=='name'">and m.name like '%${word}%' </if>
-	<if test="word!=null and searchType=='id'">and m.id like '%${word}%' </if>
+   p.reservecode = r.reservecode
+   and r.m_num = m.m_num
+   and r.rnum = i.rnum
+   <if test="word!=null and searchType=='name'">and m.name like '%${word}%' </if>
+   <if test="word!=null and searchType=='id'">and m.id like '%${word}%' </if>
 </where>
 </sql>
 
@@ -104,9 +104,14 @@ from payment p, member m, room_reserve r, room_info i
 
 <!-- 결제총액 -->
 <select id="paytotal" resultType="int">
-select sum(p.p_price)
+select decode(sum(p.p_price), null, 0, sum(p.p_price))as "sum(p_price)"
 from payment p, member m, room_reserve r, room_info i
-<include refid="paySearch"/>
+where p.reservecode = r.reservecode
+	and p_cancel is null
+	and r.m_num = m.m_num
+	and r.rnum = i.rnum
+	<if test="word!=null and searchType=='name'">and m.name like '%${word}%' </if>
+	<if test="word!=null and searchType=='id'">and m.id like '%${word}%' </if>
 </select>
 
 <!-- 결제취소 -->
@@ -116,10 +121,10 @@ set p_date = '', p_cancel = sysdate
 where p_num = #{p_num}
 </update>
 
-<!-- 결제취소확인 -->
-<select id="cancelcheck" parameterType="int">
-select p_num from payment
-where p_num = #{pnum}
+<!-- 결제취소여부확인 -->
+<select id="cancelcheck" parameterType="int" resultType="int">
+select count(p_num) from payment
+where p_num = #{p_num}
 and p_date is null
 </select>
 

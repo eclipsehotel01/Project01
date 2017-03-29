@@ -141,8 +141,8 @@ public class Management_Controller {
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("startRow", startRow);
 		hm.put("endRow", endRow);
-		hm11.put("searchType", field);
-		hm11.put("word", word);
+		hm.put("searchType", field);
+		hm.put("word", word);
 		 
 		List<paymentVO> paylist = management_service.payList(hm);
 		String pageHtml = page1.paging(paycount, pageSize, currentPage, field, word);
@@ -154,21 +154,28 @@ public class Management_Controller {
 		model.addAttribute("pageHtml", pageHtml);
 		return "management/payment/pay_management";
 	}
-	
-	//결제취소
+
+	// 결제취소
 	@RequestMapping(value = "pay_cancel")
 	@ResponseBody
-	public String pay_cancel(String p_num){	//삭제아니고 업데이트!
-		String msg = "fail";
-		String[] arr =  p_num.split(",");
-		for(int i=0; i<arr.length;i++){
-			if(Integer.toString(management_service.cancelCheck(Integer.parseInt(arr[i])))==null){
+	public String pay_cancel(String p_num) { // 삭제아니고 업데이트!
+		String msg = "";
+		String[] arr = p_num.split(",");
+
+		// 결제 취소 여부 확인
+		for (int i = 0; i < arr.length; i++) {
+			if (management_service.cancelCheck(Integer.parseInt(arr[i])) == 1) {
+				msg = "fail";
 				break;
-			}else{
-				management_service.payCancel(Integer.parseInt(arr[i]));
+			} else
 				msg = "success";
+		}
+
+		// 선택된 결제 취소
+		for (int i = 0; i < arr.length; i++) {
+			if (msg == "success") {
+				management_service.payCancel(Integer.parseInt(arr[i]));
 			}
-			System.out.println("msg : " + msg);
 		}
 		return msg;
 	}

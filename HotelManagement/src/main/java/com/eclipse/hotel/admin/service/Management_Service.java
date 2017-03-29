@@ -96,9 +96,9 @@ public class Management_Service {
 	}
 
 	//결제 취소여부 확인
-	public int cancelCheck(int pnum) {
+	public int cancelCheck(int p_num) {
 		// TODO Auto-generated method stub
-		return management_dao.cancelCheck(pnum);
+		return management_dao.cancelCheck(p_num);
 	}	
 
 }

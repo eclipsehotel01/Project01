@@ -1,91 +1,91 @@
 html {
-   height: 100%;
-   margin : 0px;
-   padding: 0px;
+	height: 100%;
+	margin : 0px;
+	padding: 0px;
 }
 
 body {
-   margin : 0px;
-   padding : 0px;
-   font-family: dotum;   
-   height: 100%   
+	margin : 0px;
+	padding : 0px;
+	font-family: dotum;	
+	height: 100%	
 }
 
 .btnStyle { 
-   border : 1px solid #BDBDBD;
-   border-radius : 5px;
-   background-color : white;
-   height: 22px;
-   font-family : dotum;
-   font-size: 9pt;
-   color: gray;
+	border : 1px solid #BDBDBD;
+	border-radius : 5px;
+	background-color : white;
+	height: 22px;
+	font-family : dotum;
+	font-size: 9pt;
+	color: gray;
 
 }
 
 #admin_header {
-    background-image : url('/hotel/resources/img/backgound01.png');   
-   background-repeat : repeat; 
-   height : 50px;
-   padding-bottom : 0px;
+    background-image : url('/hotel/resources/img/backgound01.png');	
+	background-repeat : repeat; 
+	height : 50px;
+	padding-bottom : 0px;
 }
-#header_img {    
-   float : left;
-   padding-top : 10px;
-   padding-left : 20px;
+#header_img { 	
+	float : left;
+	padding-top : 10px;
+	padding-left : 20px;
 }
-#header_nav {   
-   text-align : right;   
-   padding-top : 6px;
-   padding-right : 20px;
+#header_nav {	
+	text-align : right;	
+	padding-top : 6px;
+	padding-right : 20px;
 }
 
 
 nav {
-   background-image : url('/hotel/resources/img/admin_nav_bg.png');
-   background-repeat : repeat-x;
-   height : 30px;
-   padding : 0px;
+	background-image : url('/hotel/resources/img/admin_nav_bg.png');
+	background-repeat : repeat-x;
+	height : 30px;
+	padding : 0px;
 }
-#admin_nav ul {   
-   text-align : center;
-   margin : 0px;
+#admin_nav ul {	
+	text-align : center;
+	margin : 0px;
 }
-#admin_nav li{   
-   display : inline;
-   margin-top : 20px;
-   margin-right : 30px;
-   color : white;
-   font-family: dotum;
+#admin_nav li{	
+	display : inline;
+	margin-top : 20px;
+	margin-right : 30px;
+	color : white;
+	font-family: dotum;
     font-size: 12px;
-   font-weight : bold; 
+	font-weight : bold; 
 }
 #admin_nav a{
-   text-decoration : none;
+	text-decoration : none;
 }
-#admin_nav a:hover{   
-   color : #efe7b1;
+#admin_nav a:hover{	
+	color : #efe7b1;
 }
 
 
 aside {
-   background-image : url('/hotel/resources/img/backgound01.png');   
-   background-repeat : repeat; 
-   float : left;
-   width : 200px;
-   height : calc(100% - 110px);   
+	background-image : url('/hotel/resources/img/backgound01.png');	
+	background-repeat : repeat; 
+	float : left;
+	width : 200px;
+	height : calc(100% - 110px);	
 }
 #admin-aside ul{
-   margin : 20px;
-   padding : 0px;
-   
+	margin : 20px;
+	padding : 0px;
+	
 }
-#admin-aside hr{   
-   margin-top : 30px;
-   margin-bottom : 30px;
+#admin-aside hr{	
+	margin-top : 30px;
+	margin-bottom : 30px;
 }
 .aside-title {
-   display : block;
-   font-family: dotum;
+	display : block;
+	font-family: dotum;
     font-size: 14px;
     color: #efe7b1;
     font-weight: bold;    
@@ -94,108 +94,126 @@ aside {
 
 }
 .aside-content li{
-   display : block;
-   font-family: dotum;
+	display : block;
+	font-family: dotum;
     font-size: 13px;
     color: white;
     font-weight: bold; 
-   margin-bottom : 10px;
+	margin-bottom : 10px;
 }
 .aside-content a{
-   text-decoration : none;
+	text-decoration : none;
 }
 .aside-content a:hover{
-   text-decoration : underline;
-   color : white;
+	text-decoration : underline;
+	color : white;
 }
 
-section {   
-   width : calc(100% - 200px);   
-   height: calc(100% - 110px);
-   overflow: auto;
-   float : left;      
+
+section {	
+	width : calc(100% - 200px);	
+	height: calc(100% - 110px);
+	overflow: auto;
+	float : left;		
 }
 #main_title {
-   width : calc(100% - 8px);
-   height : 27px;
-   padding-top : 8px;
-   padding-left : 8px;
-   background-image : url('/hotel/resources/img/backgound02.png');
-   background-repeat : repeat;
-   font-family: dotum;
+	width : calc(100% - 8px);
+	height : 27px;
+	padding-top : 8px;
+	padding-left : 8px;
+	background-image : url('/hotel/resources/img/backgound02.png');
+	background-repeat : repeat;
+	font-family: dotum;
     font-size: 14px;
-   font-weight : bold;
+	font-weight : bold;
 }
 #main_content {
-   background-color : white;
-   width : 1000px;      
-   margin : auto;
-   margin-top : 50px;   
-   margin-bottom : 50px;
+	background-color : white;
+	width : 1000px;		
+	margin : auto;
+	margin-top : 50px;	
+	margin-bottom : 50px;
 }
 #content_search {
-   margin-bottom: 20px;
-}s
-#content_search select {
-   height: 22px;
-   font-size: 10pt;
+	margin-bottom: 25px;
 }
-
+#content_search select {
+	height: 22px;
+	font-size: 9pt;
+}
 #main_content .searchTableStyle {
-   width : 100%;   
-   border-top : 2px solid #6699cc;
-   border-left : 1px solid #BDBDBD;
-   border-right : 1px solid #BDBDBD;
-   border-bottom : 1px solid #BDBDBD;
-   border-collapse: collapse;   
-   border-spacing: 0px;
-   font-size: 10pt;   
-   text-align: center;   
-   height : 40px;
+	width : 100%;	
+	border-top : 2px solid #6699cc;
+	border-left : 1px solid #BDBDBD;
+	border-right : 1px solid #BDBDBD;
+	border-bottom : 1px solid #BDBDBD;
+	border-collapse: collapse;	
+	border-spacing: 0px;
+	font-size: 10pt;	
+	text-align: center;	
+	height : 40px;
 }
 #content_list_top {
-   font-size: 10pt;
-   font-weight: bold;
-   margin-bottom: 10px;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-bottom: 5px;
+	height: 22px;
 }
 #content_list_all_table { 
-   height: 500px;
+	height: 500px;
 }
 #main_content .tableStyle {
-   width : 100%;   
-   border-top : 2px solid #6699cc;
-   border-left : 1px solid #BDBDBD;
-   border-right : 1px solid #BDBDBD;
-   border-bottom : 1px solid #BDBDBD;
-   border-collapse: collapse;   
-   border-spacing: 0px;
-   font-size: 10pt;      
+	width : 100%;	
+	border-top : 2px solid #6699cc;
+	border-left : 1px solid #BDBDBD;
+	border-right : 1px solid #BDBDBD;
+	border-bottom : 1px solid #BDBDBD;
+	border-collapse: collapse;	
+	border-spacing: 0px;
+	font-size: 10pt;		
 }
 #main_content th {
-   background-color : #EAEAEA;
-   border : 1px solid #BDBDBD;   
-   height: 30px;   
+	background-color : #EAEAEA;
+	border : 1px solid #BDBDBD;	
+	height: 30px;	
 }
 #main_content td {
-   border : 1px solid #BDBDBD;   
-   height: 27px;   
+	border : 1px solid #BDBDBD;	
+	height: 27px;	
 }
-#content_list_bottom {   
-   font-size: 10pt;
+#content_list_bottom {	
+	font-size: 10pt;
 }
 #main_content span {
-   color: #f3662b;
-   font-weight: bold;
+	color: #f3662b;
+	font-weight: bold;
 }
 #main_content .bottomBtnStyle {
-   margin-top : 15px;
-   text-align: center;
+	margin-top : 15px;
+	text-align: center;
+}
+#content_comment {
+ 	text-align: center;
+ 	margin-top: 20px;
+}
+#comment_table td{
+	border : 0px solid;
+}
+#comment_list {
+	width : 700px;
+	font-size: 10pt;
+}
+#comment_list td {
+	border : 0px solid;
+}
+#comment_list a:hover {
+	color : #f3662b;
 }
 
 footer{
-   background-image : url('/hotel/resources/img/admin_nav_bg.png');
-   background-repeat : repeat-x;
-   height : 30px;
-   padding : 0px;
-   clear : both;
+	background-image : url('/hotel/resources/img/admin_nav_bg.png');
+	background-repeat : repeat-x;
+	height : 30px;
+	padding : 0px;
+	clear : both;
 }

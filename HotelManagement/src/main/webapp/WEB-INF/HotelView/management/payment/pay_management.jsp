@@ -61,8 +61,10 @@ function payCancel(){
 			function(data){
 				if(data=='fail'){
 					alert("이미 취소된 결제입니다.");
+					location.href="pay_list";
 				}else {
 					alert("결제번호 : " + cb + "가 취소되었습니다.");
+					location.href="pay_list";
 				}
 			}
 	);
@@ -75,15 +77,23 @@ function unchecked(){
 	$('input:checkbox[id="cb"]').attr("checked", false);
 }
 
-//전체선택
+ //전체선택
 $(document).ready(function(){
 	$("#selectAll").click(function(){
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) $('input:checkbox[id="cb"]').attr("checked", true);
-        else  $('input:checkbox[id="cb"]').attr("checked", false);
+        else{
+        	$('input:checkbox[id="cb"]').attr("checked", false);
+        	location.href="pay_list";
+        }
     });
-});
-
+}); 
+//전체선택
+/* $("#selectAll").click(function(){
+        var chk = $(this).is(":checked");//.attr('checked');
+        if(chk) $('input:checkbox[id="cb"]').attr("checked", true);
+        else  $('input:checkbox[id="cb"]').attr("checked", false);
+ }); */
 </script>
 </head>
 <body>
