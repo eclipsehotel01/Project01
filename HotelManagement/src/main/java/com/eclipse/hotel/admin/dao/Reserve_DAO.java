@@ -68,8 +68,8 @@ public class Reserve_DAO {
 		return session.selectOne(namespace+".standperson",room);
 	}
 	//방번호 리스트
-	public List<room_infoVO> listRnum(){
-		return session.selectList(namespace + ".rnumList");
+	public List<room_infoVO> listRnum(room_reserveVO vo){
+		return session.selectList(namespace + ".rnumList", vo);
 	}
 	//추가요금
 	public int getExtraTotal(String string) {
@@ -78,9 +78,17 @@ public class Reserve_DAO {
 		return session.selectOne(namespace + ".getextracharge", string);
 		
 	}
+	
+	//호실정보 
 	public room_infoVO roomInfo(int rnum) {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".roomInfo", rnum);
+	}
+	
+	//예약가능한 객실(in)
+	public List<room_reserveVO> searchRoomIn(room_reserveVO reserve) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".searchRoomIn",reserve);
 	}
 
 }

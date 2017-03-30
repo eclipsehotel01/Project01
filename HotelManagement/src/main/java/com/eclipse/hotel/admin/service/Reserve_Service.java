@@ -64,8 +64,8 @@ public class Reserve_Service {
 		return reserve_dao.standperson(room);
 	}
 	//방번호 리스트
-	public List<room_infoVO> listRnum(){
-		return reserve_dao.listRnum();
+	public List<room_infoVO> listRnum(room_reserveVO vo){
+		return reserve_dao.listRnum(vo);
 	}
 	//추가 요금
 	public int getExtraTotal(String string) {
@@ -77,6 +77,12 @@ public class Reserve_Service {
 	public room_infoVO roomInfo(int rnum) {
 		// TODO Auto-generated method stub
 		return reserve_dao.roomInfo(rnum);
+	}
+	
+	//예약가능한 객실(in)
+	public List<room_reserveVO> searchRoomIn(room_reserveVO reserve) {
+		// TODO Auto-generated method stub
+		return reserve_dao.searchRoomIn(reserve);
 	}
 
 }

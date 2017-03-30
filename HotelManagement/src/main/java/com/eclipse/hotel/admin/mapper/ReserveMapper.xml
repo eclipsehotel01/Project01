@@ -61,9 +61,13 @@ where rnum=#{rnum}
 </select>
 
 <!-- 방번호 리스트 -->
-<select id="rnumList" resultType="r_infoVO">
-SELECT rnum FROM room_info
-ORDER BY 1
+<select id="rnumList" parameterType="r_reserv_VO" resultType="r_infoVO">
+select rnum from ROOM_INFO
+where rnum !=(select rnum
+from ROOM_RESERVE
+where check_in &lt;= to_date(#{check_in},'yy/mm/dd')
+and to_date(#{check_out},'yy/mm/dd') &lt; check_out
+and reservecode != #{reservecode})
 </select>
 
 <!--추가요금  -->
@@ -74,6 +78,14 @@ select e_price from extracharge where extracode=#{string}
 <!-- 호실정보 -->
 <select id="roomInfo" parameterType="int" resultType="r_infoVO">
 select standperson,max_person from room_info where rnum=#{rnum}
+</select>
+
+<!-- 예약가능한 객실 -->
+<select id="searchRoomIn" parameterType="r_reserv_VO" resultType="r_reserv_VO">
+select rnum from ROOM_RESERVE 
+where CHECK_IN &lt;= #{check_in}
+and #{check_out} &lt; check_out
+and reservecode != #{reservecode}
 </select>
 
 </mapper>

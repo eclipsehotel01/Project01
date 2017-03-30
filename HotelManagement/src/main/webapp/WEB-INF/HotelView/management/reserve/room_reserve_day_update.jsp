@@ -16,18 +16,10 @@
 <script>
 $(document).ready(function(){
    //호실정보 불러오기
-/*     $.get("roomInfo",
-          {"rnum" : $("#frnum").val() },
-          function(data){
-        	  alert(data);
-            $("#standp").html(data);
-          }
-      );  */  
    $("#rnum").change(function(){
       $.get("roomInfo",
           {"rnum" : $("#rnum").val() },
           function(data){
-            // alert(data);
              arr = data.split("/");
              $("#standp").val(arr[0]);
              $("#max").val(arr[1]);
@@ -36,13 +28,12 @@ $(document).ready(function(){
    }); 
        
     //예약가능한 호실 목록
-     $("#rnum").change(function(){
-      $.get("roomInfo",
-          {"rnum" : $("#rnum").val() },
+     $("#check_out").change(function(){
+      $.get("searchRoomIn",
+          {"check_in" : $("#check_in").val(),  "check_out" : $("#check_out").val(), "reservecode" :$("#reservecode").val() },
           function(data){
-            // alert(data);
-             arr = data.split("/");
-             $("#standp").val(arr[0]);
+             alert("sssss");
+             $("#rnumlist").val(data);
           }
       );
    }); 
@@ -110,7 +101,7 @@ $( function() {
 <form id="updatereservedata" name="updatereservedata" action="update" method="get">
 <table border=1 cols="2" width="1000px" height="500px">
 
-<input type="hidden" name="reservecode" value=${selectlist.reservecode}>
+<input type="hidden" id = "reservecode" name="reservecode" value=${selectlist.reservecode}>
 <tr>
 <td style="background-color: #A9F5F2;">이용기간</td>
 <td>
@@ -125,10 +116,18 @@ $( function() {
 <td>
 	<select id="rnum" name="rnum">
 		<option id="frnum" value="${selectlist.rnum }">${selectlist.rnum }</option>
-		<c:forEach items="${roomnum }" var="room">	
+ 		<c:forEach items="${roomnum }" var="room">	
 			<option id ="room" value="${room.rnum}">${room.rnum}</option>	
 		</c:forEach>
+			<%-- <option id ="rnumlist" value="${room.rnum}">${room.rnum}</option> --%>
 	</select>
+	
+<%-- 	<select name = "stitle1" id="stitle1" onchange="findYear()" >
+   <option> 교과목명 </option>
+   <c:forEach items = "${stitle }" var = "t">
+      <option value = "${t.stitle}"> ${t.stitle } </option>
+   </c:forEach> --%>
+</select>
 </td>
 </tr>
 <tr>

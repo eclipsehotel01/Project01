@@ -19,6 +19,7 @@ $(document).ready(function(){
 		});
 	$("#updatereserve").click(function(){
 		location.href="updatereserve?reservecode="+$("#reservecode").val()+"&m_num="+$("#m_num").val()+"&rnum="+$("#rnum").val()
+				+"&check_in="+$("#checkin").val()+"&check_out="+$("#checkout").val()
 		});
 	});
 </script>
@@ -37,6 +38,8 @@ $(document).ready(function(){
 
 <input type="hidden" id="reservecode" value="${selectlist.reservecode}">
 <input type="hidden" id="rnum" value="${selectlist.rnum }">
+<input type="hidden" id="checkin" value="${selectlist.check_in }">
+<input type="hidden" id="checkout" value="${selectlist.check_out }">
 <tr>
 <td style="background-color:#A9F5F2 ;">객실정보</td>
 <td>${selectlist.rnum}</td>

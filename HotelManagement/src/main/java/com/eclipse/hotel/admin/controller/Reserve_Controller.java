@@ -87,13 +87,13 @@ public class Reserve_Controller {
 	
 	//예약 수정 페이지
 	@RequestMapping(value = "updatereserve", method = RequestMethod.GET)
-	public String updatereserve(Model model,int reservecode,int m_num,int rnum)
+	public String updatereserve(Model model,room_reserveVO vo)
 	{
-		room_reserveVO selectlist= reserve_service.selectlist(reservecode);	
-		List<memberVO> rmember= reserve_service.rmember(m_num);
-		List<room_infoVO> roomnum = reserve_service.listRnum();
+		room_reserveVO selectlist= reserve_service.selectlist(vo.getReservecode());	
+		List<memberVO> rmember= reserve_service.rmember(vo.getM_num());
+		List<room_infoVO> roomnum = reserve_service.listRnum(vo);
 		
-		String paytype=reserve_service.searchtype(rnum);
+		String paytype=reserve_service.searchtype(vo.getRnum());
 		
 		model.addAttribute("selectlist",selectlist);
 		model.addAttribute("rmember",rmember);
@@ -102,13 +102,19 @@ public class Reserve_Controller {
 		return "management/reserve/room_reserve_day_update";
 	}
 	
+	//예약가능한 호실(in)
+	@RequestMapping(value="searchRoomIn")
+	@ResponseBody
+	public List searchRoomIn(room_reserveVO reserve){
+		List<room_reserveVO> roomNum= reserve_service.searchRoomIn(reserve);
+		return roomNum;
+	}
+	
 	//호실정보 
 	@RequestMapping(value="roomInfo")
 	@ResponseBody
 	public String roomInfo(int rnum){
-		System.out.println("방번호 :" + rnum);
 		room_infoVO info = reserve_service.roomInfo(rnum);	
-				System.out.println("기준인원 : " + info);
 		return info.getStandperson()+"/"+info.getMax_person();
 	}
 	
@@ -177,6 +183,7 @@ public class Reserve_Controller {
     	 }
       }
       reserve.setExtracharge(extraTot);
+      
 		//추가요금
 		int extra=reserve.getExtracharge();
 		
