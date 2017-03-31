@@ -1,5 +1,6 @@
 package com.eclipse.hotel.admin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,14 +20,14 @@ public class Membership_DAO {
 	//mapper
 	private String namespace = "com.eclipse.hotel.admin.mapper.MembershipMapper";
 	
-	//전체회원 보기
-	public List<memberVO> list(){
-		return session.selectList(namespace + ".membershipList");
+	//회원 리스트
+	public List<memberVO> list(HashMap<String, Object> hm){
+		return session.selectList(namespace + ".membershipList", hm);
 	}
 	
-	//전체회원 수
-	public int count(){
-		return session.selectOne(namespace + ".membershipCount");
+	//회원 수
+	public int count(HashMap<String, Object> hm){
+		return session.selectOne(namespace + ".membershipCount", hm);
 	}
 	
 	//오늘 가입 회원 수
@@ -48,5 +49,15 @@ public class Membership_DAO {
 	public List<room_reserveVO> preReserveList(int m_num){
 		return session.selectList(namespace + ".membershipPreReserve", m_num);
 	}		
+	
+	//회원 수정
+	public void update(memberVO member){
+		session.update(namespace + ".memberUpdate", member);
+	}
+	
+	//회원 삭제
+	public void delete(int m_num){
+		session.delete(namespace + ".memberDelete", m_num);
+	}
 	
 }

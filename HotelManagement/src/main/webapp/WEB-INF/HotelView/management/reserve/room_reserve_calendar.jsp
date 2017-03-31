@@ -7,36 +7,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
-
 <!-- 캘린더 -->
 <link href="resources/fullcalendar/fullcalendar.css" rel="stylesheet"/>
 <link href="resources/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print"/>
 <script type="text/javascript" src="resources/fullcalendar/lib/moment.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/lib/jquery.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/fullcalendar.js"></script>
-<!-- 
-<script type="text/javascript" src="resources/js/calendar.js"></script>
- --> 
- 
+<script type="text/javascript" src="resources/fullcalendar/locale/ko.js"></script>
+
  <script>
  $(document).ready(function(){ 		 
 	 $('#main_content').fullCalendar({	
+		lang:"ko",	 
+	 	
 		 header : {
 			    left:   'today prev,next',
 			    center: 'title',
-			    right:  'month, listWeek'
+			    right:  'month, listMonth'
 			}			 
 		 ,eventSources: [		        
 		        {
 		            url: 'admin_reserve_list',
-		            type: 'GET',		           
+		            type: 'GET',
 		            error: function() {
 		                alert('there was an error while fetching events!');
 		            },
-		            color: 'pink',  
-		            textColor: 'black' 
+		            color: '#6699cc',
+		            textColor: 'white',
+		            allDayDefault:true
+		            
 		        }
 		    ]
+		 ,eventClick: function(event) {
+             if (event.url) {
+				location.href=event.url;
+ 				return false;
+             }
+         }
+
 		}); //fullcalendar	
  }); //ready 
 
@@ -54,15 +62,7 @@
 			<img src="resources/img/btn01.png"> 객실예약정보
 		</div>
 		<!-- S : main_content -->
-		<div id="main_content">
-		
-			<!-- S : content_calendar -->
-			<div id="content_calendar">			
-			</div>
-			<div id="content_calendar1">			
-			</div>
-			<!-- E : content_calendar -->
-				
+		<div id="main_content">						
 		</div>
 		<!-- E :main_content -->
 	</section>

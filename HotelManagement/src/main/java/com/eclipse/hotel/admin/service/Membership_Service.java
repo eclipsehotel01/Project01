@@ -1,5 +1,6 @@
 package com.eclipse.hotel.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,14 +17,14 @@ public class Membership_Service {
 	@Resource(name = "membership_dao")
 	private Membership_DAO membership_dao; 
 	
-	//전체회원 보기
-	public List<memberVO> list(){
-		return membership_dao.list();
+	//회원 리스트
+	public List<memberVO> list(HashMap<String, Object> hm){
+		return membership_dao.list(hm);
 	}
 	
-	//전체회원 수
-	public int count(){
-		return membership_dao.count();
+	//회원 수
+	public int count(HashMap<String, Object> hm){
+		return membership_dao.count(hm);
 	}
 	
 	//오늘 가입 회원 수
@@ -45,7 +46,16 @@ public class Membership_Service {
 	public List<room_reserveVO> preReserveList(int m_num){
 		return membership_dao.preReserveList(m_num);
 	}	
+	
+	//회원 수정
+	public void update(memberVO member){
+		membership_dao.update(member);
+	}
 
+	//회원 삭제
+	public void delete(int m_num){
+		membership_dao.delete(m_num);
+	}
 	
 
 }

@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <!-- 별칭 -->
 <typeAliases>
+	<typeAlias alias="boardVO" type="com.eclipse.hotel.vo.boardVO"/>
 	<typeAlias type="com.eclipse.hotel.vo.memberVO" alias="memberVO"/>
 	<typeAlias type="com.eclipse.hotel.vo.extra_chargeVO" alias="extra_cVO"/>
 	<typeAlias type="com.eclipse.hotel.vo.paymentVO" alias="payVO"/>
@@ -15,12 +16,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="com.eclipse.hotel.vo.room_reserveVO" alias="r_reserv_VO"/>
 </typeAliases>
 
-
 <!-- mapper -->
 <mappers>
+	<mapper resource="com/eclipse/hotel/admin/mapper/ManagementMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/admin/mapper/Myboard.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/MembershipMapper.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/ReserveMapper.xml"/>
-	<mapper resource="com/eclipse/hotel/mapper/ManagementMapper.xml"/>
 </mappers>
 
 </configuration>
