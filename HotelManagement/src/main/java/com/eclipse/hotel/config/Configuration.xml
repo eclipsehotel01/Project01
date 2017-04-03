@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mapper resource="com/eclipse/hotel/admin/mapper/Myboard.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/MembershipMapper.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/ReserveMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/guest/mapper/MemberMapper.xml"/>
 </mappers>
 
 </configuration>

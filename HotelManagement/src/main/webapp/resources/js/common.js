@@ -1,3 +1,8 @@
+//관리자홈페이지 이동
+function management(){
+	location.href="management_homepage";
+}
+
 $(document).ready(function() {
 	//코멘트 리스트
 	$("#comment_area").load("commentList?b_num=" + $("#b_num").val(),

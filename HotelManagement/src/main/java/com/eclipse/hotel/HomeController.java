@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "management/reserve/room_reserve_calendar";
+		return "guest/main/home";
 	}
 	
 	@RequestMapping("Managementboardregister")
@@ -54,4 +54,11 @@ public class HomeController {
 	public String pay_management(){
 		return "redirect:pay_list";
 	}	
+	
+	//관리자 홈페이지 이동
+	@RequestMapping(value = "management_homepage")
+	public String managementHomepage(){
+		return "management/reserve/room_reserve_calendar";
+	}
+	
 }
