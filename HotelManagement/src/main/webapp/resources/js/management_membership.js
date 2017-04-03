@@ -3,6 +3,11 @@ function btnAllList(){
 	location.href = "admin_membership_list";
 }
 
+//전체선택
+function btnAll(){
+	$("#checkAll").prop("checked", true);
+}
+
 //검색
 function btnSearch(){
 	if($("#search_word") == ""){
@@ -19,11 +24,12 @@ function btnUpdatePage(m_num){
 }
 
 //수정
-function btnUpdate(){	
-	if($("#password") == $("#passwordCheck")){
-		$("#updateForm").submit();
-	}else{
+function btnUpdate(){
+	if($("#password") != $("#passwordCheck")){
 		alert("비밀번호가 일치하지 않습니다.");
+		return false;		
+	}else{
+		$("#updateForm").submit();
 	}	
 }
 

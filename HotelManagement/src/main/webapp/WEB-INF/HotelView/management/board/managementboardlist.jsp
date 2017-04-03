@@ -54,7 +54,7 @@
 			
 				<div id="content_list_top">			
 					<div align="left" style="float:left">
-						ㅣ게시물 <span>${count }</span>개가 검색되었습니다.
+						ㅣ게시물 <span style="color: #f3662b;font-weight: bold">${count }</span>개가 검색되었습니다.
 					</div>
 					<div align="right">
 						<input type="button" value="글쓰기" onclick="javascript:location.href='managementboardregister?category=${category }'" class="btnStyle">
@@ -82,7 +82,7 @@
 							<td style="padding-left:15px"><c:if test="${m.levels>0}">
 									<img src="resources/img/level.gif" width="${5*m.levels}"
 										height="16">
-									<img src="resources/img/reply_icon.gif">
+									<img src="resources/img/reply_icon01.png">
 								</c:if> <a href="managementboarddetail?b_num=${m.b_num}">${m.title }</a></td>
 
 							<td style="padding-left:15px">${m.id }</td>

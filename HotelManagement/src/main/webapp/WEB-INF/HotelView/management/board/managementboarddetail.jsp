@@ -62,7 +62,7 @@
 		<div id="content_list">
 
 			<div id="content_list_top">
-				ㅣ<span>${board.category }</span> 게시물 내용입니다.
+				ㅣ<span style="color: #f3662b;font-weight: bold">${board.category }</span> 게시물 내용입니다.
 			</div>
 
 			<!-- S : content_table -->

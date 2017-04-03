@@ -17,7 +17,7 @@ public class Board_Service {
 	private Board_DAO board_dao;
 	
 	//mapper
-	private String namespace = "com.eclipse.hotel.config.Myboard";
+	private String namespace = "com.eclipse.hotel.admin.mapper.Myboard";
 	
 	//게시판등록
 	public void managementboardinsert(boardVO vo){

@@ -15,16 +15,15 @@
 <script type="text/javascript" src="resources/fullcalendar/fullcalendar.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/locale/ko.js"></script>
 
-
  <script>
  $(document).ready(function(){ 		 
 	 $('#main_content').fullCalendar({	
 		lang:"ko",	 
-	 
+	 	
 		 header : {
 			    left:   'today prev,next',
 			    center: 'title',
-			    right:  'month, listWeek'
+			    right:  'month, listMonth'
 			}			 
 		 ,eventSources: [		        
 		        {
@@ -33,16 +32,16 @@
 		            error: function() {
 		                alert('there was an error while fetching events!');
 		            },
-		            color: '#99FFFF',  
-		            textColor: 'black' 
+		            color: '#6699cc',
+		            textColor: 'white',
+		            allDayDefault:true
+		            
 		        }
 		    ]
 		 ,eventClick: function(event) {
              if (event.url) {
-/*                  window.open(event.url, "scrollbars=yes,resizable=yes,width=1000,height=1000");
- */
-			location.href=event.url;
- 			return false;
+				location.href=event.url;
+ 				return false;
              }
          }
 

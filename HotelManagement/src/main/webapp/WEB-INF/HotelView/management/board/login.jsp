@@ -41,6 +41,6 @@ PW <input type="text" id="passwd" name="passwd"><br><br>
 <a href="reg">회원가입</a>
 </form>
 </div>
-<span style="color:red">${errMsg}</span> 
+<span style="color: #f3662b;font-weight: bold">${errMsg}</span> 
 </body>
 </html> 

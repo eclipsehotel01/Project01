@@ -5,11 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.eclipse.hotel.admin.mapper.ManagementMapper">
 
+<!-- 객실등록 -->
+<insert id="roominsert" parameterType="map">
+insert into room_info(rnum,rtype,img,max_person,rname,price,standperson,rsize)
+values(#{rnum}, #{rtype}, #{img}, #{max_person}, #{rname}, #{price}, #{standperson}, #{rsize})
+</insert>
 <!-- 객실sql -->
 <!-- <sql id="roomSearch">
 <where>
-	p.price = i.price
-	<if test="rname!=null">and i.rname like '%'||#{rname}||'%' </if>
+   p.price = i.price
+   <if test="rname!=null">and i.rname like '%'||#{rname}||'%' </if>
 </where>
 </sql> -->
 
@@ -50,7 +55,7 @@ select *
 from room_info i , room_price p
 where rnum = #{rnum}
 and i.price = p.price
-</select>	
+</select>   
 
 <!-- 객실요금표 -->
 <select id="roomprice" resultType="r_priceVO">
@@ -71,11 +76,11 @@ where rnum = #{rnum}
 delete from room_info where rnum = #{rnum} 
 </delete>
 
-<!-- 객실등록 -->
+<!-- 객실등록 
 <insert id="roominsert" parameterType="r_infoVO">
 insert into room_info
 values(#{rnum}, #{rname}, #{rsize}, #{rtype}, #{standperson}, #{max_person}, #{img}, #{price})
-</insert>
+</insert> -->
 
 <!-- 객실요금수정 -->
 <update id="priceupdate" parameterType="r_priceVO">
@@ -107,11 +112,11 @@ from payment p, member m, room_reserve r, room_info i
 select decode(sum(p.p_price), null, 0, sum(p.p_price))as "sum(p_price)"
 from payment p, member m, room_reserve r, room_info i
 where p.reservecode = r.reservecode
-	and p_cancel is null
-	and r.m_num = m.m_num
-	and r.rnum = i.rnum
-	<if test="word!=null and searchType=='name'">and m.name like '%${word}%' </if>
-	<if test="word!=null and searchType=='id'">and m.id like '%${word}%' </if>
+   and p_cancel is null
+   and r.m_num = m.m_num
+   and r.rnum = i.rnum
+   <if test="word!=null and searchType=='name'">and m.name like '%${word}%' </if>
+   <if test="word!=null and searchType=='id'">and m.id like '%${word}%' </if>
 </select>
 
 <!-- 결제취소 -->

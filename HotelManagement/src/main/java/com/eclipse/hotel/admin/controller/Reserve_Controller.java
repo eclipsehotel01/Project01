@@ -39,12 +39,13 @@ public class Reserve_Controller {
 	@RequestMapping(value = "admin_reserve_list", method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public String list(Model model) throws UnsupportedEncodingException {		
-		List<room_reserveVO> reserveList = reserve_service.list();		
+		List<room_reserveVO> reserveList = reserve_service.list();	
 		
 		//parsing(json)
 		JSONArray jarr = new JSONArray();
 		JSONObject obj = null;
-		for(room_reserveVO r : reserveList){
+		for(room_reserveVO r : reserveList){		
+			
 			obj = new JSONObject();
 			try {				
 				obj.put("title", r.getRnum() +  "호(" + r.getReservecode() + ")예약");// URLEncoder.encode("호(", "utf-8")URLEncoder.encode(") 예약", "utf-8")
@@ -118,10 +119,12 @@ public class Reserve_Controller {
 		return info.getStandperson()+"/"+info.getMax_person();
 	}
 	
+	
 	//예약 수정
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value ="reupdate", method = RequestMethod.GET)
 	public String update(room_reserveVO reserve,String paytype)
 	{
+		System.out.println("와라" + reserve.getCheck_in());
 		paytype=reserve_service.searchtype(reserve.getRnum());
 		// 시즌 비시즌 구분
 		String date=reserve.getCheck_in();

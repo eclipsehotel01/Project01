@@ -15,7 +15,7 @@
 <script type="text/javascript" src="resources/js/common.js"></script>
 
 </head>
-</head>
+
 <body>
 	<%@include file="../../template/admin_header.jsp" %>
 	<%@include file="../../template/admin_nav.jsp" %>
@@ -34,7 +34,7 @@
 			<div id="content_list">				
 				
 				<div id="content_list_top">	
-					ㅣ<span>${member.name }</span>님의 회원정보입니다.
+					ㅣ<span style="color: #f3662b;font-weight: bold">${member.name }</span>님의 회원정보입니다.
 				</div>
 				
 				<!-- S : content_table1 -->
@@ -82,7 +82,7 @@
 				<br><br>
 				
 				<div id="content_list_top">					
-					ㅣ<span>${member.name }</span>님의 예약정보입니다.
+					ㅣ<span style="color: #f3662b;font-weight: bold">${member.name }</span>님의 예약정보입니다.
 				</div>
 				<!-- S : content_table2 -->
 				<div id="content_list_table">
@@ -141,6 +141,5 @@
 	<!-- E : MAIN SECTION -->
 	
 	<%@include file="../../template/admin_footer.jsp" %>
-</body>
 </body>
 </html>

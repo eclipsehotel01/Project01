@@ -2,16 +2,25 @@ package com.eclipse.hotel.admin.service;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.eclipse.hotel.admin.dao.Management_DAO;
-import com.eclipse.hotel.vo.memberVO;
+import com.eclipse.hotel.util.FileUtils;
+
 import com.eclipse.hotel.vo.paymentVO;
-import com.eclipse.hotel.vo.room_reserveVO;
+
 
 import com.eclipse.hotel.vo.room_infoVO;
 import com.eclipse.hotel.vo.room_priceVO;
@@ -23,6 +32,44 @@ public class Management_Service {
 	@Resource(name = "management_dao")
 	private Management_DAO management_dao; 	
 
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils;
+	
+	private static final Logger logger = LoggerFactory.getLogger(Management_Service.class);
+	//∞¥Ω«µÓ∑œ∆ƒ¿œ√∑∫Œ
+
+	public void roomInsert(Map<String, Object>map,HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		
+/*		
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
+		while(iterator.hasNext()){
+		multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+		if(multipartFile.isEmpty() == false){
+			
+			logger.info("------------- file start -------------");
+			logger.info("name : "+multipartFile.getName());
+			logger.info("filename : "+multipartFile.getOriginalFilename());
+			logger.info("size : "+multipartFile.getSize());
+			logger.info("-------------- file end --------------\n");
+			}
+		}*/
+		String img=null;
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		System.out.println("list ORIGINAL_FILE_NAME:"+list.get(0).get("ORIGINAL_FILE_NAME"));
+		map.put("img", list.get(0).get("ORIGINAL_FILE_NAME"));
+		System.out.println("map :"+map);
+		management_dao.roomInsert(map);
+//		System.out.println("list :"+list);
+		
+		/*for(int i=0, size=list.size(); i<size; i++){
+			management_dao.roomInsert(list.get(i));
+		}*/
+
+
+	}
 	//∞¥Ω« ¿¸√º∫∏±‚
 	public List<room_infoVO> roomList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
@@ -59,12 +106,13 @@ public class Management_Service {
 		management_dao.roomDelete(rnum);
 	}
 
-	//∞¥Ω«µÓ∑œ
+/*	//∞¥Ω«µÓ∑œ
 	public void roomInsert(room_infoVO vo) {
 		// TODO Auto-generated method stub
 		management_dao.roomInsert(vo);
+		
 	}
-
+*/
 	//∞¥Ω«ø‰±›ºˆ¡§
 	public void priceUpdate(room_priceVO vo) {
 		// TODO Auto-generated method stub
@@ -100,5 +148,6 @@ public class Management_Service {
 		// TODO Auto-generated method stub
 		return management_dao.cancelCheck(p_num);
 	}	
-
+	
+	//∆ƒ¿œ√∑∫Œ
 }

@@ -14,7 +14,14 @@
 <script type="text/javascript" src="resources/js/management_membership.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
+<script>
+function btnAll(){
+	$("#checkAll").attr("checked", "checked");
+}
+</script>
+
 </head>
+
 <body>
 	<%@include file="../../template/admin_header.jsp" %>
 	<%@include file="../../template/admin_nav.jsp" %>
@@ -52,10 +59,10 @@
 			
 				<div id="content_list_top">			
 					<div align="left" style="float:left">
-						ㅣ총 <span>${memberCount }</span>명의 회원이 검색되었습니다.
+						ㅣ총 <span style="color: #f3662b;font-weight: bold">${memberCount }</span>명의 회원이 검색되었습니다.
 					</div>
 					<div align="right">
-						오늘 가입 : <span>${todayCount }</span>명
+						오늘 가입 : <span style="color: #f3662b;font-weight: bold">${todayCount }</span>명
 					</div>
 				</div>
 				
@@ -92,7 +99,7 @@
 				
 				<div id="content_list_bottom">
 					<div style="float:left">
-						<input type="button" value="전체선택" onclick="btnAll()" class="btnStyle">
+						<input type="button" value="전체선택" onclick="btnAll()" class="btnStyle" id="checkAll">
 						<input type="button" value="선택삭제" onclick="btnSelectDelete()" class="btnStyle">
 					</div>
 					<div align="right">
@@ -113,6 +120,5 @@
 	<!-- E : MAIN SECTION -->
 	
 	<%@include file="../../template/admin_footer.jsp" %>
-</body>
 </body>
 </html>

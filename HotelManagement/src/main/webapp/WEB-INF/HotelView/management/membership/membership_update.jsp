@@ -15,7 +15,7 @@
 <script type="text/javascript" src="resources/js/common.js"></script>
 
 </head>
-</head>
+
 <body>
 	<%@include file="../../template/admin_header.jsp" %>
 	<%@include file="../../template/admin_nav.jsp" %>
@@ -35,7 +35,7 @@
 					<input type="hidden" name=m_num value="${member.m_num }">		
 					
 					<div id="content_list_top">	
-						ㅣ회원기본정보수정(<span>${member.name }</span>)
+						ㅣ회원기본정보수정(<span style="color: #f3662b;font-weight: bold">${member.name }</span>)
 					</div>
 					
 					<!-- S : content_table -->				
@@ -122,6 +122,5 @@
 	<!-- E : MAIN SECTION -->
 	
 	<%@include file="../../template/admin_footer.jsp" %>
-</body>
 </body>
 </html>

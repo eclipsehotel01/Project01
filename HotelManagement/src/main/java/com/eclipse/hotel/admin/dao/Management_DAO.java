@@ -2,6 +2,7 @@ package com.eclipse.hotel.admin.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,6 +37,11 @@ public class Management_DAO {
 	//mapper경로 
 	private String namespace = "com.eclipse.hotel.admin.mapper.ManagementMapper";
 	
+/*	public int insertFile(Map<String, Object> map) throws Exception{
+		
+		return session.insert("sample.insertFile", map);
+	}*/
+
 	//객실 전체보기
 	public List<room_infoVO> roomList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
@@ -74,9 +80,9 @@ public class Management_DAO {
 	}
 
 	//객실등록
-	public void roomInsert(room_infoVO vo) {
+	public void roomInsert(Map<String, Object>map) {
 		// TODO Auto-generated method stub
-		session.insert("roominsert", vo);
+		session.insert("roominsert", map);
 	}
 
 	//객실요금수정
