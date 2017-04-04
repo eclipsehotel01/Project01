@@ -20,6 +20,7 @@
 		</div>
 		<div id="main_content">
 			내용입니다.
+			<a href="managementboardlist">글쓰기</a>
 		</div>
 	</section>
 	<!-- E : MAIN SECTION -->

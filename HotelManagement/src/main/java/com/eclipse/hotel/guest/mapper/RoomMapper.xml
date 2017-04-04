@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper     
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eclipse.hotel.guest.mapper.RoomMapper">
+
+<!-- 객실목록 -->
+<select id="roomInfoList" resultType="r_infoVO">
+select distinct m.rname, m.m_memo
+from room_info i, room_memo m
+where decode((substr(i.rname, 1, instr(i.rname,'_',1)-1)), null, i.rname, (substr(i.rname, 1, instr(i.rname,'_',1)-1))) = m.rname
+order by 1
+</select>
+
+<!-- 객실타이틀  -->
+<select id="roomInfoTitle" parameterType="String" resultType="r_infoVO">
+select distinct rname, rtype 
+from room_info
+where rname like '%'||#{rname}||'%'
+</select>
+
+<!-- 객실 상세보기 -->
+<select id="roomInfoDetail" parameterType="map" resultType="r_infoVO">
+select distinct substr(i.rnum,1,1)as rnum, i.rname, i.rsize, i.rtype, i.standperson, 
+		i.max_person, i.img, i.price, i.memo, m.m_memo, p.season, p.nonseason
+from room_info i, room_memo m, room_price p
+where decode((substr(i.rname, 1, instr(i.rname,'_',1)-1)), null, i.rname, (substr(i.rname, 1, instr(i.rname,'_',1)-1))) = m.rname
+and i.price = p.price
+and i.rname = #{rname}
+and i.rtype = #{rtype}
+</select>
+
+</mapper>

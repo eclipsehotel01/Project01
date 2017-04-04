@@ -13,7 +13,29 @@ public class room_reserveVO {
 	int extracharge;
 	int p_price;
 	String rtype;
+	int r_price;
+	int standperson;
+	int max_person;
 	
+	
+	public int getStandperson() {
+		return standperson;
+	}
+	public int getMax_person() {
+		return max_person;
+	}
+	public void setStandperson(int standperson) {
+		this.standperson = standperson;
+	}
+	public void setMax_person(int max_person) {
+		this.max_person = max_person;
+	}
+	public int getR_price() {
+		return r_price;
+	}
+	public void setR_price(int r_price) {
+		this.r_price = r_price;
+	}
 	public int getReservecode() {
 		return reservecode;
 	}
@@ -27,13 +49,13 @@ public class room_reserveVO {
 		this.m_num = m_num;
 	}
 	public String getCheck_in() {
-		return check_in;
+		return check_in.substring(0, 10).replace('-', '/');
 	}
 	public void setCheck_in(String check_in) {
 		this.check_in = check_in;
 	}
 	public String getCheck_out() {
-		return check_out;
+		return check_out.substring(0, 10).replace('-', '/');
 	}
 	public void setCheck_out(String check_out) {
 		this.check_out = check_out;

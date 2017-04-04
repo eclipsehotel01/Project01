@@ -4,7 +4,15 @@ public class room_priceVO {
 	String price;
 	int season;
 	int nonseason;
+	String pmemo;
 	
+	
+	public String getPmemo() {
+		return pmemo;
+	}
+	public void setPmemo(String pmemo) {
+		this.pmemo = pmemo;
+	}
 	public String getPrice() {
 		return price;
 	}
