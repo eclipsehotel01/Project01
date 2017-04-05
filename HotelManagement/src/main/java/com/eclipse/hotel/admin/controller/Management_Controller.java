@@ -22,6 +22,7 @@ import com.eclipse.hotel.vo.CommandMap;
 import com.eclipse.hotel.vo.paymentVO;
 
 import com.eclipse.hotel.vo.room_infoVO;
+import com.eclipse.hotel.vo.room_memoVO;
 import com.eclipse.hotel.vo.room_priceVO;
 
 
@@ -203,5 +204,21 @@ public class Management_Controller {
          }
       }
       return msg;
+   }
+   
+   //객실 타입 목록
+   @RequestMapping("room_type")
+   public String room_type(Model model){
+	   List<room_memoVO> typelist = management_service.typelist();
+	   
+	   model.addAttribute("typelist", typelist);
+	   return "management/reserve/room_type";
+   }
+   
+   //객실 타입 설명 수정
+   @RequestMapping("rtype_update")
+   public String rtype_update(room_memoVO memo){
+	   management_service.rtype_update(memo);
+	   return "redirect:room_type";
    }
 }

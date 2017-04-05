@@ -25,6 +25,7 @@ import com.eclipse.hotel.vo.paymentVO;
 import com.eclipse.hotel.vo.room_reserveVO;
 
 import com.eclipse.hotel.vo.room_infoVO;
+import com.eclipse.hotel.vo.room_memoVO;
 import com.eclipse.hotel.vo.room_priceVO;
 
 
@@ -121,5 +122,15 @@ public class Management_DAO {
 		return session.selectOne("cancelcheck", p_num);
 	}	
 	
-	
+	//객실 타입 목록
+	public List<room_memoVO> typelist() {
+		// TODO Auto-generated method stub
+		return session.selectList("typelist");
+	}
+
+	//객실 타입 설명 수정
+	public void rtype_update(room_memoVO memo) {
+		// TODO Auto-generated method stub
+		session.selectList("rtypeupdate", memo);
+	}	
 }

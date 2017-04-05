@@ -71,16 +71,7 @@ $(document).ready(function() {
 		}
 		$("#frm").submit();
 	});	
-	
-	//게시물 수정
-	$("#update").click(
-			function() {
-				window.open("pwdCheck11?b_num=${board.b_num}&title="
-						+ $("#title").val() + "&content="
-						+ $("#content").val() + "&category="
-						+ $("#category").val(), "",
-						"width=350 height=200 scrollbars=yes");
-	});
+
 	
 	// 답글 등록
 	$("#btnReply").click(function() {
@@ -95,6 +86,7 @@ $(document).ready(function() {
 		$("#frm").submit();
 	});
 	
+		
 	
 }); 
 

@@ -32,8 +32,8 @@
 
 		<!-- S : content_list -->
 		<div id="content_list">
-			<form action="managementboardinsert" id="frm" method="post">
-				<input type="hidden" name=m_num value="${member.m_num }">
+			<input type="hidden" name=m_num value="${member.m_num }">
+			<form action="managementboardinsert" id="frm" method="post">				
 
 				<div id="content_list_top">ㅣ게시물 등록</div>
 
@@ -44,6 +44,7 @@
 							<th width="15%">게시판선택</th>
 							<td width="85%" style="padding-left: 15px"><select
 								id="category" name="category">
+								
 									<c:if test="${category=='공지사항'}">
 										<option selected="selected">공지사항</option>
 										<option>QnA</option>
@@ -97,12 +98,11 @@
 								name="password" id="password"></td>
 						</tr>
 						<tr>
-							<th colspan="2">내용</th>
+							<th colspan="2" >내용</th>
 						</tr>
 						<tr>
 							<td colspan="2"><textarea rows="30" cols="139"
-									name="content" id="content">
-						</textarea></td>
+									name="content" id="content"></textarea></td>
 						</tr>
 
 					</table>

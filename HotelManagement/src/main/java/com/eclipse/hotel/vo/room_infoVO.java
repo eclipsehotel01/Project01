@@ -10,7 +10,21 @@ public class room_infoVO {
 	String price;
 	int season;
 	int nonseason;
+	String memo;
+	String m_memo;
 	
+	public String getM_memo() {
+		return m_memo;
+	}
+	public void setM_memo(String m_memo) {
+		this.m_memo = m_memo;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
 	public int getSeason() {
 		return season;
 	}

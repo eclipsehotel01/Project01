@@ -1,6 +1,6 @@
 package com.eclipse.hotel.vo;
 
-public class ZipcodeVO {
+public class zipcodeVO {
 	private String zipcode;
 	private String sido;
 	private String gugun;

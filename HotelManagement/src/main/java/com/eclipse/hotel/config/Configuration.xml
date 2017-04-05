@@ -14,14 +14,20 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="com.eclipse.hotel.vo.room_infoVO" alias="r_infoVO"/>
 	<typeAlias type="com.eclipse.hotel.vo.room_priceVO" alias="r_priceVO"/>
 	<typeAlias type="com.eclipse.hotel.vo.room_reserveVO" alias="r_reserv_VO"/>
+	<typeAlias type="com.eclipse.hotel.vo.zipcodeVO" alias="zipcodeVO"/>
+	<typeAlias type="com.eclipse.hotel.vo.room_memoVO" alias="r_memo_VO"/>
 </typeAliases>
 
 <!-- mapper -->
 <mappers>
+	<mapper resource="com/eclipse/hotel/mapper/CommonMapper.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/ManagementMapper.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/Myboard.xml"/>
+	<mapper resource="com/eclipse/hotel/guest/mapper/MyGuestboard.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/MembershipMapper.xml"/>
 	<mapper resource="com/eclipse/hotel/admin/mapper/ReserveMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/guest/mapper/MemberMapper.xml"/>
+	<mapper resource="com/eclipse/hotel/guest/mapper/RoomMapper.xml"/>
 </mappers>
 
 </configuration>

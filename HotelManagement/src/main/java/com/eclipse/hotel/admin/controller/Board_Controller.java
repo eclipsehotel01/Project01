@@ -99,6 +99,7 @@ public class Board_Controller {
 	//게시판수정시 jsp로 이동
 	@RequestMapping("pwdCheck11")
 	public String pwdCheck11(Model model,int b_num,String title,String content,String category){
+		System.out.println("와라");
 		model.addAttribute("b_num",b_num);
 		model.addAttribute("title",title);
 		model.addAttribute("content",content);

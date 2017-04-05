@@ -133,4 +133,16 @@ where p_num = #{p_num}
 and p_date is null
 </select>
 
+<!-- 객실타입목록 -->
+<select id="typelist" resultType="r_memo_VO"> 
+select * from room_memo 
+</select>
+
+<!-- 객실 타입 설명 수정 -->
+<update id="rtypeupdate" parameterType="r_memo_VO"> 
+update room_memo set m_memo = #{m_memo} where rname = #{rname} 
+</update>
+
+
+
 </mapper>

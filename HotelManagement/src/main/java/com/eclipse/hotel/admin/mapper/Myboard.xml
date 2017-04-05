@@ -64,6 +64,7 @@ b.m_num=m.m_num
 	<update id="CountData" parameterType="int">
 	update board set count=count+1 where b_num=#{b_num}
 	</update>
+	
 	<!-- 댓글 -->
 	
 	<!-- 전체보기 검색 --> 

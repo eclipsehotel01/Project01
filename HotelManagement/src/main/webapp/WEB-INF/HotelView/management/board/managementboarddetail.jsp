@@ -14,12 +14,12 @@
 <!-- JS -->
 <script type="text/javascript" src="resources/js/management_board.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
-
+ 
 <script>
 	//게시물 삭제
 	function btnDel() {
 		if (confirm("정말 삭제할까요?")) {
-			location.href = "managementboarddelete?b_num=" + $('#b_num').val()
+			location.href = "managementboarddelete?b_num="+$('#b_num').val()
 					+ "&category=" + $("#category").val() + "&groups="
 					+ $("#groups").val() + "&levels=" + $("#levels").val()
 					+ "&steps=" + $("#steps").val();
@@ -33,16 +33,15 @@
 				$("#update").click(
 						function() {
 							window.open(
-									"pwdCheck11?b_num=${board.b_num}&title="
+									"pwdCheck11?b_num="+$('#b_num').val()+"&title="
 											+ $("#title").val() + "&content="
 											+ $("#content").val()
 											+ "&category="
 											+ $("#category").val(), "",
 									"width=350 height=200 scrollbars=yes");
 						});
-			});
+			}); 
 </script>
-
 </head>
 <body>
 	<%@include file="../../template/admin_header.jsp"%>
@@ -107,7 +106,7 @@
 					</div>
 				</form>
 			</div>
-			<!-- E : content_table -->	
+			<!-- E : content_table -->
 			
 			<!-- S : content_comment -->
 			<div id="content_comment">

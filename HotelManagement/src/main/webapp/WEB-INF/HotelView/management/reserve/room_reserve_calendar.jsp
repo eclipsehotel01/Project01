@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="resources/css/admin_style.css">
+
+<!-- JS -->
+<script type="text/javascript" src="resources/js/common.js"></script>
+
 <!-- 캘린더 -->
 <link href="resources/fullcalendar/fullcalendar.css" rel="stylesheet"/>
 <link href="resources/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print"/>
@@ -14,7 +18,6 @@
 <script type="text/javascript" src="resources/fullcalendar/lib/jquery.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/fullcalendar.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/locale/ko.js"></script>
-
  <script>
  $(document).ready(function(){ 		 
 	 $('#main_content').fullCalendar({	

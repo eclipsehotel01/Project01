@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "management/NewFile";
+		return "guest/main/home";
 	}
 	
 	@RequestMapping("managementboardregister")
@@ -41,10 +41,7 @@ public class HomeController {
 		model.addAttribute("category",category);
 		return "management/board/Managementboardregister";
 	} 
-	@RequestMapping("loginform")
-	public String login(){
-		return "management/board/login";
-	}
+	 
 	@RequestMapping(value = "room_management")
 	public String room_management(){
 		return "redirect:room_list";

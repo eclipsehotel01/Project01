@@ -26,6 +26,7 @@
 				<div id="aside-reserv" class="aside-content">
 					<ul>
 						<a href="room_management"><li>객실 등록/관리</li></a>
+						<a href="room_type"><li>객실 타입 관리</li></a>
 						<a href="open_reserve_list"><li>예약관리</li></a>
 						<a href=""><li>할인이벤트</li>	</a>					
 					</ul>

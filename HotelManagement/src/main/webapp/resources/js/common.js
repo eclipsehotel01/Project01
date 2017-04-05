@@ -1,3 +1,13 @@
+//관리자홈페이지 이동
+function adminHome(){
+	location.href="adminHome";
+}
+
+//사용자홈페이지 이동
+function guestHome(){
+	location.href="guestHome";
+}
+
 $(document).ready(function() {
 	//코멘트 리스트
 	$("#comment_area").load("commentList?b_num=" + $("#b_num").val(),
@@ -38,11 +48,13 @@ $(document).ready(function() {
 
 // 우편번호 - 검색 페이지
 function btnZipcode(){
-	window.open("common_zipcode","","width=1000 height=300 scrollbars=yes");
+	window.open("common_zipcode",
+			"",
+			"width=1000 height=300 scrollbars=yes");
 }
 
 //우편번호 - 검색(버튼)
-function btnZipcodeSend(){
+function btnZipcodeSend(){	
 	sentIt();
 }
 
@@ -54,10 +66,13 @@ function zipcodeEnter(){
 }
 
 //우편번호 - 검색
-function sendIt(){
+function sentIt(){
+	alert("111111111");
 	$.post("common_zipcode", 
 		{"dong":$("#dong").val()}, 
 		function(data){	
+			alert("넘어오라고");
+			alert(data);
 			$("#zipcodeArea").html(data);
 		}
 	); 

@@ -6,8 +6,8 @@
 		<img src="resources/img/admin_header_img.png">
 	</div>
 	<div id="header_nav">
-		<a href=""><img src="resources/img/admin_header_nav01.png"></a>
-		<a href="guestboardregister"><img src="resources/img/admin_header_nav02.png"></a>
+		<a href="javascript:adminHome();"><img src="resources/img/admin_header_nav01.png"></a>
+		<a href="javascript:guestHome();"><img src="resources/img/admin_header_nav02.png"></a>
 	</div>
 </header>
 <!-- E : HEADER -->
