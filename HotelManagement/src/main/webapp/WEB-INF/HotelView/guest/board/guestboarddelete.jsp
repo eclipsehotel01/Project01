@@ -15,10 +15,10 @@
 	<div align="center">
 		<form method="post">
 			<input type="hidden" id="b_num" name="b_num" value="${b_num}">
-			<input type="hidden" id="title" name="title" value="${title}">
-			<input type="hidden" id="content" name="content" value="${content}">
-			<input type="hidden" id="category" name="category"
-				value="${category }">
+			<input type="hidden" id="steps" name="steps" value="${steps}">
+			<input type="hidden" id="groups" name="groups" value="${groups}">
+			<input type="hidden" id="levels" name="levels" value="${levels}">
+			<input type="hidden" id="category" name="category" value="${category }">
 			<table>
 
 				<tr>
@@ -29,8 +29,8 @@
 					<th>
 				</tr>
 				<tr>
-					<th align="center"><input type="button" value="수정"
-						onclick="passCheck()"></th>
+					<th align="center"><input type="button" value="삭제"
+						onclick="passCheck11()"></th>
 				</tr>
 			</table>
 		</form>

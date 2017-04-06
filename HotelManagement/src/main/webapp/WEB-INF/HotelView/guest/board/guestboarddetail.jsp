@@ -8,60 +8,47 @@
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 
 <!-- CSS -->
-<link rel="stylesheet" type="text/css"
-	href="resources/css/admin_style.css">
+<link rel="stylesheet" type="text/css" href="resources/css/guest_style.css">
 
 <!-- JS -->
-<script type="text/javascript" src="resources/js/guest_board.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
-
-<script>
-	//게시물 삭제
-	function btnDel() {
-		if (confirm("정말 삭제할까요?")) {
-			location.href = "guestboarddelete?b_num=" + $('#b_num').val()
-					+ "&category=" + $("#category").val() + "&groups="
-					+ $("#groups").val() + "&levels=" + $("#levels").val()
-					+ "&steps=" + $("#steps").val();
-		}
-
-	}
-
-	$(document).ready(
-			function() {
-				//게시물 수정
-				$("#update").click(
-						function() {
-							window.open(
-									"guestpwdCheck11?b_num="+$('#b_num').val()+"&title="
-									+ $("#title").val() + "&content="
-									+ $("#content").val()
-									+ "&category="
-									+ $("#category").val(), "",
-							"width=350 height=200 scrollbars=yes");
-						});
-			});
-</script>
+<script type="text/javascript" src="resources/js/guest_main.js"></script>
+<script type="text/javascript" src="resources/js/guest_member.js"></script>
+<script type="text/javascript" src="resources/js/guest_board.js"></script>
 
 </head>
 <body>
-	<%@include file="../../template/admin_header.jsp"%>
-	<%@include file="../../template/admin_nav.jsp"%>
-	<%@include file="../../template/admin_aside.jsp"%>
-
-	<!-- S : MAIN SECTION -->
-	<section>
-	<div id="main_title">
-		<img src="resources/img/btn01.png"> 게시물 상세보기
-	</div>
-
-	<!-- S : main_content -->
-	<div id="main_content">
-
-		<!-- S : content_list -->
-		<div id="content_list">
-
-			<div id="content_list_top">
+<!-- S : WRAP -->
+<div id="wrap" class="bg-v1">
+	
+	<div id="main">
+		
+		<%@include file="../../template/guest_header.jsp" %>
+		
+		<!-- S : MAIN CONTENT -->
+		<div id="main_content">
+		
+			<div id="top">
+				<ul class="topmenu">
+					<c:if test="${sessionScope.loginID != null}">
+						<li><span class="loginInfo">'${sessionScope.loginID}'님이 로그인하셨습니다.</span></li>
+						<li><a href="javascript:memberLogout();" class="btn-topmenu">LOGOUT</a></li>				
+						<li><a href="javascript:memberMypage();" class="btn-topmenu">MY PAGE</a></li>
+					</c:if>
+					<c:if test="${sessionScope.loginID == null}">				
+						<li><a href="javascript:memberLogin();" class="btn-topmenu">LOGIN</a></li>				
+						<li><a href="javascript:memberRegister();" class="btn-topmenu">JOIN</a></li>
+					</c:if>
+				</ul>
+			</div>		
+		
+			<div id="content_title">
+				<h3 class="title">게시물 상세보기</h3>
+			</div>
+			
+			<!-- S : CONTENT INNER -->
+			<div id="content_inner">
+				<div id="content_list_top">
 				ㅣ<span style="color: #f3662b;font-weight: bold">${board.category }</span> 게시물 내용입니다.
 			</div>
 
@@ -102,8 +89,13 @@
 
 					<div id="content_list_bottom" class="bottomBtnStyle">
 						<input type="submit" value="답글등록" id="reply" class="btnStyle">
-						<input type="button" value="수정" id="update" class="btnStyle">
-						<input type="button" value="삭제" onclick="btnDel()" class="btnStyle">						
+						<input type="button" value="수정" onclick="checkUpdate()" class="btnStyle">
+						<input type="button" value="삭제" onclick="checkDelete()" class="btnStyle">
+					</div>					
+					<div align="right">
+						<input type="button" value="전체목록"
+						onclick="javascript:location.href='guestboardlist?category=${board.category }'"
+						class="btnStyle">
 					</div>
 				</form>
 			</div>
@@ -126,16 +118,17 @@
 				<div id="comment_area"></div>
 			</div>
 			<!-- E : content_comment -->
-
-
+				
+			</div>
+			<!-- E : CONTENT INNER -->
+	
 		</div>
-		<!-- E : content_list -->
-
+		<!-- E : MAIN CONTENT -->
 	</div>
-	<!-- E :main_content --> </section>
-	<!-- E : MAIN SECTION -->
-
-	<%@include file="../../template/admin_footer.jsp"%>
-</body>
+	
+	<%@include file="../../template/guest_footer.jsp" %>
+	
+</div>		
+<!-- E : WRAP -->	
 </body>
 </html>

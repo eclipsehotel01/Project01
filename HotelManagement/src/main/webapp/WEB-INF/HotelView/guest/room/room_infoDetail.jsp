@@ -6,90 +6,71 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<script>
-//페이지 변경 시 객실 정보 검색
- $(document).ready(function(){
-	 detailGo(0);
-}); 
 
-//객실 정보 검색
-function detailGo(i){		
-	$.ajax({
-		type:"GET",
-		url:"room_infoDetail",
-		data:{"rname" : $("#rname"+i).val(), "rtype" : $("#rtype"+i).val()},
-		success:function(data){
-			parse(data);
-		}
-	});
-}
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="resources/css/guest_style.css">
 
-//parsing data
-function parse(data){
-	data = $.parseJSON(data);
-	var str = "";
-	
-	//이름&사진
-	str += "<div>";
-	str += "<h3>"+ data.rname + " " + data.rtype +" ROOM</h3>";
-	str += "<ul><li><img src='" + data.img +"'/></li></ul>";
-	str += "</div>";
-	
-	//설명
-	str += "<div>";
-	str += "<h4>" + data.m_memo + "</h4>";
-	str += data.memo;
-	str += "</div>";
-	
-	//상세정보
-	str += "<div>";
-	str += "<ul>";
-	
-	str += "<li><dl>";
-	str += "<dt>위치</dt>";
-	str += "<dd>" + data.rnum + "층</dd>";
-	str += "</dl></li>";
-	
-	str += "<li><dl>";
-	str += "<dt>침대타입</dt>";
-	str += "<dd>" + data.rtype + "</dd>";
-	str += "</dl></li>";
-	
-	str += "<li><dl>";
-	str += "<dt>객실크기</dt>";
-	str += "<dd>" + data.rsize + "m<sup>2</sup></dd>";
-	str += "</dl></li>";
-	
-	str += "<li><dl>";
-	str += "<dt>가격</dt>";
-	str += "<dd>성수기:" + data.season + "원 / 비성수기:" + data.nonseason +"원</dd>";
-	str += "</dl></li>";
-	
-	str += "</ul>";
-	str += "</div>";
-	
-	$("#detail").html(str);
- }
-</script>
+<!-- JS -->
+<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript" src="resources/js/guest_main.js"></script>
+<script type="text/javascript" src="resources/js/guest_member.js"></script>
+<script type="text/javascript" src="resources/js/guest_room.js"></script>
 
-<title>객실상세목록</title>
 </head>
-
 <body>
+<!-- S : WRAP -->
+<div id="wrap" class="bg-v1">
+	
+	<div id="main">
+		
+		<%@include file="../../template/guest_header.jsp" %>
+		
+		<!-- S : MAIN CONTENT -->
+		<div id="main_content">
+		
+			<div id="top">
+				<ul class="topmenu">
+					<c:if test="${sessionScope.loginID != null}">
+						<li><span class="loginInfo">'${sessionScope.loginID}'님이 로그인하셨습니다.</span></li>
+						<li><a href="javascript:memberLogout();" class="btn-topmenu">LOGOUT</a></li>				
+						<li><a href="javascript:memberMypage();" class="btn-topmenu">MY PAGE</a></li>
+					</c:if>
+					<c:if test="${sessionScope.loginID == null}">				
+						<li><a href="javascript:memberLogin();" class="btn-topmenu">LOGIN</a></li>				
+						<li><a href="javascript:memberRegister();" class="btn-topmenu">JOIN</a></li>
+					</c:if>
+				</ul>
+			</div>		
+		
+			<div id="content_title">
+				<h3 class="title">Room Detail</h3>
+			</div>
+			
+			<!-- S : CONTENT INNER -->
+			<div id="content_inner">
+			
+				<ul>
+					<c:forEach items="${room_infoTitle}" var="infoTitle" varStatus="r">
+						<input type = "hidden" id="${r.index}">
+						<input type = "hidden" id = "rname${r.index}" value="${infoTitle.rname }">
+						<input type = "hidden" id = "rtype${r.index}" value="${infoTitle.rtype }">
+						<li><input type="button" onclick="detailGo(${r.index})" value="${infoTitle.rname } ${infoTitle.rtype } ROOM"></li>
+					</c:forEach>
+				</ul>
 
-<div> <!-- 큰타이틀 -->
-<ul>
-	<c:forEach items="${room_infoTitle}" var="infoTitle" varStatus="r">
-	<input type = "hidden" id="${r.index}">
-	<input type = "hidden" id = "rname${r.index}" value="${infoTitle.rname }">
-	<input type = "hidden" id = "rtype${r.index}" value="${infoTitle.rtype }">
-	<li><input type="button" onclick="detailGo(${r.index})" value="${infoTitle.rname } ${infoTitle.rtype } ROOM"></li>
-	</c:forEach>
-</ul>
-</div>
-
-<!-- parsing -->
-<div id = "detail"></div>
-
+				<!-- parsing -->
+				<div id = "detail"></div>
+				
+			</div>
+			<!-- E : CONTENT INNER -->
+	
+		</div>
+		<!-- E : MAIN CONTENT -->
+	</div>
+	
+	<%@include file="../../template/guest_footer.jsp" %>
+	
+</div>		
+<!-- E : WRAP -->	
 </body>
 </html>

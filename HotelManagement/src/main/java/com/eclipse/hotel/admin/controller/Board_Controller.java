@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -33,8 +34,9 @@ public class Board_Controller {
 	
 	//게시판등록
 	@RequestMapping(value="managementboardinsert",method=RequestMethod.POST)	
-	public String managementboardinsert(boardVO vo) throws UnsupportedEncodingException{
-		System.out.println("cate : "+vo.getCategory());
+	public String managementboardinsert(boardVO vo,HttpSession session) throws UnsupportedEncodingException{
+		int mnum = Integer.parseInt(session.getAttribute("loginNO").toString());
+		vo.setM_num(mnum);
 		board_service.managementboardinsert(vo); 
 		String category = URLEncoder.encode(vo.getCategory(), "utf-8");
 		return "redirect:managementboardlist?category="+category;   
@@ -99,7 +101,6 @@ public class Board_Controller {
 	//게시판수정시 jsp로 이동
 	@RequestMapping("pwdCheck11")
 	public String pwdCheck11(Model model,int b_num,String title,String content,String category){
-		System.out.println("와라");
 		model.addAttribute("b_num",b_num);
 		model.addAttribute("title",title);
 		model.addAttribute("content",content);
@@ -144,7 +145,9 @@ public class Board_Controller {
 	}
 	//댓글등록
 	@RequestMapping(value="commentInsert")
-	public String insert(boardVO vo){
+	public String insert(boardVO vo,HttpSession session){
+		int mnum = Integer.parseInt(session.getAttribute("loginNO").toString());
+		vo.setM_num(mnum);
 		board_service.commentInsert(vo);
 		return "redirect:commentList?b_num="+vo.getB_num(); 
 	}
@@ -165,7 +168,9 @@ public class Board_Controller {
 	
 	//답글등록
 	@RequestMapping("boardReply1")
-	public String replyinsert1(boardVO vo) throws UnsupportedEncodingException{ 
+	public String replyinsert1(boardVO vo,HttpSession session) throws UnsupportedEncodingException{ 
+		int mnum = Integer.parseInt(session.getAttribute("loginNO").toString());
+		vo.setM_num(mnum);
 		board_service.update1(vo);
 		board_service.replyinsert(vo);
 		String category = URLEncoder.encode(vo.getCategory(), "utf-8");

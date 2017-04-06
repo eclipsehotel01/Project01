@@ -8,14 +8,14 @@
 				<ul class="menu">				
 					<li><a href="#">Notice</a>
 						<ul class="dep2">
-							<li><a href="">Notice</a></li>						
+							<li><a href="guestboardlist?category=공지사항">Notice</a></li>						
 						</ul></li>
 					<li><a href="#">Rooms & Suites</a>
 						<ul class="dep2">
 							<li><a href="room_infoList">ViewAll</a></li>
-							<li><a href="">Deluxe</a></li>
-							<li><a href="">Executive</a></li>
-							<li><a href="">Suites</a></li>
+							<li><a href="room_infoTitle?rname=DELUXE">Deluxe</a></li>
+							<li><a href="room_infoTitle?rname=EXCUTIVE">Executive</a></li>
+							<li><a href="room_infoTitle?rname=SUITE">Suites</a></li>
 						</ul></li>	
 					<li><a href="#">Restaurant</a>
 						<ul class="dep2">

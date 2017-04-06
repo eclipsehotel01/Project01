@@ -6,57 +6,73 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<script type="text/javascript" src="resources/js/guest_board.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="resources/css/guest_style.css">
+
+<!-- JS -->
 <script type="text/javascript" src="resources/js/common.js"></script>
-</head>
+<script type="text/javascript" src="resources/js/guest_main.js"></script>
+<script type="text/javascript" src="resources/js/guest_member.js"></script>
+<script type="text/javascript" src="resources/js/guest_board.js"></script>
 </head>
 <body>
-<input type="hidden" name=m_num value="${member.m_num }">
-
-	<form action="guestboardinsert" id="frm" method="get">
+<!-- S : WRAP -->
+<div id="wrap" class="bg-v1">
+	
+	<div id="main">
 		
-		<div id="content_list_top">ㅣ게시물 등록</div>
-
-			<table>
+		<%@include file="../../template/guest_header.jsp" %>
+		
+		<!-- S : MAIN CONTENT -->
+		<div id="main_content">
+		
+			<div id="top">
+				<ul class="topmenu">
+					<c:if test="${sessionScope.loginID != null}">
+						<li><span class="loginInfo">'${sessionScope.loginID}'님이 로그인하셨습니다.</span></li>
+						<li><a href="javascript:memberLogout();" class="btn-topmenu">LOGOUT</a></li>				
+						<li><a href="javascript:memberMypage();" class="btn-topmenu">MY PAGE</a></li>
+					</c:if>
+					<c:if test="${sessionScope.loginID == null}">				
+						<li><a href="javascript:memberLogin();" class="btn-topmenu">LOGIN</a></li>				
+						<li><a href="javascript:memberRegister();" class="btn-topmenu">JOIN</a></li>
+					</c:if>
+				</ul>
+			</div>		
+		
+			<div id="content_title">
+				<h3 class="title">ㅣ게시물 등록</h3>
+			</div>
+			
+			<!-- S : CONTENT INNER -->
+			<div id="content_inner">
+			<form action="guestboardinsert" id="frm">
+				<table>
 				<tr>
 					<th width="15%">게시판선택</th>
+
 					<td width="85%" style="padding-left: 15px"><select
 						id="category" name="category">
-								<option selected="selected">공지사항</option>
-								<option>QnA</option>
-								<option>환불신청게시판</option>
-								<option>자유게시판</option>
-								<option>후기게시판</option>
-							<c:if test="${category=='공지사항'}">
-								<option selected="selected">공지사항</option>
-								<option>QnA</option>
-								<option>환불신청게시판</option>
-								<option>자유게시판</option>
-								<option>후기게시판</option>
-							</c:if>
 							<c:if test="${category=='QnA' }">
-								<option>공지사항</option>
 								<option selected="selected">QnA</option>
 								<option>환불신청게시판</option>
 								<option>자유게시판</option>
 								<option>후기게시판</option>
 							</c:if>
 							<c:if test="${category=='환불신청게시판' }">
-								<option>공지사항</option>
 								<option>QnA</option>
 								<option selected="selected">환불신청게시판</option>
 								<option>자유게시판</option>
 								<option>후기게시판</option>
 							</c:if>
 							<c:if test="${category=='자유게시판' }">
-								<option>공지사항</option>
 								<option>QnA</option>
 								<option>환불신청게시판</option>
 								<option selected="selected">자유게시판</option>
 								<option>후기게시판</option>
 							</c:if>
 							<c:if test="${category=='후기게시판' }">
-								<option>공지사항</option>
 								<option>QnA</option>
 								<option>환불신청게시판</option>
 								<option>자유게시판</option>
@@ -71,8 +87,7 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td style="padding-left: 15px"><input type="text" name="id"
-						id="id"></td>
+					<td style="padding-left: 15px">${sessionScope.loginID}</td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -88,11 +103,21 @@
 						</textarea></td>
 				</tr>
 			</table>
-		</div>
+		</form>
 		<input type="button" id="btnRegister" value="등록" class="btnStyle">
 		<input type="button" value="전체목록"
 			onclick="javascript:location.href='guestboardlist?category=${category }'"
 			class="btnStyle">
-	</form>
+			</div>
+			<!-- E : CONTENT INNER -->
+	
+		</div>
+		<!-- E : MAIN CONTENT -->
+	</div>
+	
+	<%@include file="../../template/guest_footer.jsp" %>
+	
+</div>		
+<!-- E : WRAP -->	
 </body>
 </html>

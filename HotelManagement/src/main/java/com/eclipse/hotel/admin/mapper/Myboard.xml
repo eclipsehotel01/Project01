@@ -17,7 +17,7 @@ b.m_num=m.m_num
 	<!-- 추가 -->
 	<insert id="managementboardinsert" parameterType="boardVO">
 	insert into board 
-	values(1,#{category},#{title},#{password},#{content},0,sysdate,board_seq.nextval,0,0,board_seq.nextval)
+	values(#{m_num},#{category},#{title},#{password},#{content},0,sysdate,board_seq.nextval,0,0,board_seq.nextval)
 	</insert>
 	
 	<!-- 26~37전체보기 -->
@@ -67,14 +67,14 @@ b.m_num=m.m_num
 	
 	<!-- 댓글 -->
 	
-	<!-- 전체보기 검색 --> 
+	<!-- 전체보기 --> 
 	<select id="listData" resultType="boardVO" parameterType="int">
-	select * from comment_board where b_num=#{b_num} order by c_num
+	select c.*,m.id from comment_board c,member m where m.m_num = c.m_num and b_num=#{b_num} order by c_num
 	</select>
 	
 	<!-- 추가 -->
 	<insert id="cinsertData" parameterType="boardVO">
-	insert into comment_board values(comment_board_seq.nextval,#{b_num},#{memo},sysdate)
+	insert into comment_board values(comment_board_seq.nextval,#{b_num},#{memo},sysdate,#{m_num})
 	</insert>
 	
 	<!-- 댓글 삭제 -->
@@ -97,6 +97,6 @@ b.m_num=m.m_num
 	 
 	<!-- reply 추가 -->
 	<insert id="replyData1" parameterType="boardVO">
-	insert into board(m_num,b_num,title,category,password,content,registerdate,groups,count,levels,steps) values(1,board_seq.nextval,#{title},#{category},#{password},#{content},sysdate,#{groups},0,#{levels}+1,#{steps}+1)
+	insert into board(m_num,b_num,title,category,password,content,registerdate,groups,count,levels,steps) values(#{m_num},board_seq.nextval,#{title},#{category},#{password},#{content},sysdate,#{groups},0,#{levels}+1,#{steps}+1)
 	</insert>
 </mapper>

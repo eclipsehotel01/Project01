@@ -89,8 +89,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td style="padding-left: 15px"><input type="text" name="id"
-								id="id"></td>
+							<td style="padding-left: 15px">${sessionScope.loginID}</td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>

@@ -13,9 +13,10 @@ function cdelete(c_num){
 			type:"post",
 			url:"cdelete?c_num="+c_num,
 			success:function(data){
-				$("#comment_area").html(data);			
+				$("#comment_area").html(data);	
+				window.location.reload(true);	
 			}
-		}); 		
+		});
 };
 </script>
 </head>
@@ -23,7 +24,7 @@ function cdelete(c_num){
 	<table id="comment_list" align="center">
 		<c:forEach items="${commentlist}" var="m">
 			<tr>
-				<td width="10%" align="left">${boardVO.id}</td>
+				<td width="10%" align="left">${m.id}</td>
 				<td width="10%" align="left">${m.c_num}</td>
 				<td width="60%" align="left">${m.memo }</td>
 				<td width="10%" align="left">${m.registerdate }</td>

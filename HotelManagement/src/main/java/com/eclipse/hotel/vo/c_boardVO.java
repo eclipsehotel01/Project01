@@ -5,6 +5,8 @@ public class c_boardVO {
 	int c_num;
 	String memo;
 	String registerdate;
+	int m_num;
+	String id;
 	
 	public int getB_num() {
 		return b_num;
@@ -30,5 +32,16 @@ public class c_boardVO {
 	public void setRegisterdate(String registerdate) {
 		this.registerdate = registerdate;
 	}
-	
+	public int getM_num() {
+		return m_num;
+	}
+	public void setM_num(int m_num) {
+		this.m_num = m_num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}	
 }

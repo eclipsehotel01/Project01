@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.SessionScope;
 
 import com.eclipse.hotel.guest.service.Board_Guest_Service;
 import com.eclipse.hotel.util.PageAction;
 import com.eclipse.hotel.vo.boardVO;
+
 
 @Controller
 public class Board_Guest_Controller {
@@ -25,19 +29,24 @@ public class Board_Guest_Controller {
 	
 	@Autowired
 	PageAction pageaction;
+	
 	//게시판등록폼
 	@RequestMapping("guestboardregister")
-	private String guestboardregister(){
+	private String guestboardregister(String category,Model model){
+		model.addAttribute("category",category);
 		return "guest/board/guestboardinsert";
 	} 
+	
 	//게시판등록
 	@RequestMapping(value="guestboardinsert",method=RequestMethod.GET)
-	private String guestboardinsert(boardVO vo) throws UnsupportedEncodingException{
-		System.out.println(vo.getTitle());
+	private String guestboardinsert(boardVO vo,HttpSession session) throws UnsupportedEncodingException{
 		String category = URLEncoder.encode(vo.getCategory(), "utf-8");
+		int mnum = Integer.parseInt(session.getAttribute("loginNO").toString());
+		vo.setM_num(mnum);
 		board_guest_service.guestboardinsert(vo);
 		return "redirect:guestboardlist?category="+category;
 	}
+	
 	//게시판전체보기
 	@RequestMapping(value="guestboardlist")
 	public String guestboardlist(String field,String word,String pageNum,String category,Model model){
@@ -52,7 +61,6 @@ public class Board_Guest_Controller {
 				
 				//PageAction pageaction=new PageAction();
 				int count=board_guest_service.getSearchCount(hm);
-				System.out.println("sss : "+category);
 				int pageSize=15; 
 				if(pageNum==null) pageNum="1";
 				int currentPage=Integer.parseInt(pageNum);
@@ -84,7 +92,6 @@ public class Board_Guest_Controller {
 	@RequestMapping(value="guestpwdCheck12")
 	@ResponseBody
 	public String pwdCheck12(int b_num,String password){
-		System.out.println(b_num +":" + password);
 		String pwd=board_guest_service.boardCheck(b_num);
 		String chk="false";
 		if(pwd.equals(password)){
@@ -96,7 +103,6 @@ public class Board_Guest_Controller {
 	//게시판수정시 jsp로 이동
 	@RequestMapping("guestpwdCheck11")
 	public String pwdCheck11(Model model,int b_num,String title,String content,String category){
-		System.out.println("와라");
 		model.addAttribute("b_num",b_num);
 		model.addAttribute("title",title);
 		model.addAttribute("content",content);
@@ -110,18 +116,31 @@ public class Board_Guest_Controller {
 		board_guest_service.guestboardupdate(vo);
 		return "redirect:guestboardlist"; 
 	}
+	
+	//게시판삭제시 jsp로 이동
+	@RequestMapping("guestpwdCheck22")
+	public String pwdCheck22(Model model,int b_num,int levels,int groups,int steps,String category){
+		model.addAttribute("b_num",b_num);
+		model.addAttribute("levels",levels);
+		model.addAttribute("groups",groups);
+		model.addAttribute("steps",steps);
+		model.addAttribute("category",category);
+		return "guest/board/guestboarddelete";
+	}
 	//게시판삭제
 	@RequestMapping(value="guestboarddelete")
 	public String guestboarddelete(int b_num,String category,int levels,int steps,int groups) throws UnsupportedEncodingException{
+		
 		HashMap<String, Object> del=new HashMap<String, Object>();
 		del.put("groups", groups); 
 		del.put("levels", levels);
 		del.put("steps", steps);
 		del.put("b_num", b_num);
-
+		
 		board_guest_service.guestboarddelete(del);
-		System.out.println(category);  
+		
 		String category1 = URLEncoder.encode(category, "utf-8");
+		
 		return "redirect:guestboardlist?category="+category1; 
 	}
 /*	//
@@ -135,13 +154,16 @@ public class Board_Guest_Controller {
 	//댓글리스트
 	@RequestMapping("guestcommentList")
 	public String commentList(Model model,int b_num){
+		
 		List commentlist=board_guest_service.getList(b_num);
 		model.addAttribute("commentlist",commentlist);
 		return "common/commentlist"; 
 	}
 	//댓글등록
 	@RequestMapping(value="guestcommentInsert")
-	public String insert(boardVO vo){
+	public String insert(boardVO vo,HttpSession session){
+		int mnum = Integer.parseInt(session.getAttribute("loginNO").toString());
+		vo.setM_num(mnum);
 		board_guest_service.commentInsert(vo);
 		return "redirect:commentList?b_num="+vo.getB_num(); 
 	}
@@ -162,7 +184,9 @@ public class Board_Guest_Controller {
 	
 	//답글등록
 	@RequestMapping("guestboardReply1")
-	public String replyinsert1(boardVO vo) throws UnsupportedEncodingException{ 
+	public String replyinsert1(boardVO vo,HttpSession session) throws UnsupportedEncodingException{ 
+		int mnum = Integer.parseInt(session.getAttribute("loginNO").toString());
+		vo.setM_num(mnum);
 		board_guest_service.update1(vo);
 		board_guest_service.replyinsert(vo);
 		String category = URLEncoder.encode(vo.getCategory(), "utf-8");

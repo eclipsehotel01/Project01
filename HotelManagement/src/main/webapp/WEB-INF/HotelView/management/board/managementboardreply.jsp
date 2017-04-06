@@ -54,8 +54,7 @@
 						<tr>
 							<th>작성자</th>
 							<td style="padding-left: 15px">
-								<!-- 아이디값 받아와야함 -->
-								<%-- ${board.id } --%>		
+								${sessionScope.loginID}	
 							</td>
 
 						</tr>
